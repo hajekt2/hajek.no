@@ -1,0 +1,16 @@
+{
+  "name": "Tomas Hajek",
+  "short_name": "Tomas Hajek",
+  "description": "CCM architect, co-founder of Xper Consulting, and AI product builder in Norway",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
