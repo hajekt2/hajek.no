@@ -17,6 +17,8 @@ Some customer relationships teach you more than any course or certification ever
 
 For me, [Gjensidige](https://www.gjensidige.no/) is one of those customers.
 
+For readers outside Norway: Gjensidige is one of the large Nordic insurance companies, listed on the Oslo Stock Exchange, with operations in Norway, Sweden, and Denmark. General insurance is its core business, and in Norway it also offers pension and savings products.
+
 [XPER recently wrote about the cooperation with Gjensidige](https://xperconsulting.no/artikler/gjensidige-xper-samarbeid), and it made me think about what this kind of long-term work actually teaches you.
 
 I have worked with Gjensidige on and off for many years, across document production, customer communication, integrations, batch processing, online document generation, print flows, email, SMS, archives, and the slow, careful modernization of systems that most people never see.
