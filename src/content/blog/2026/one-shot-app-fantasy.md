@@ -2,7 +2,7 @@
 title: "The one-shot app fantasy"
 author: "Tomas Hajek"
 pubDatetime: 2026-04-30T09:00:00+02:00
-featured: true
+featured: false
 draft: false
 tags:
   - ai

@@ -2,7 +2,7 @@
 title: "What years of work with Gjensidige taught me about customer communication"
 author: "Tomas Hajek"
 pubDatetime: 2025-12-12T09:00:00+01:00
-featured: false
+featured: true
 draft: false
 tags:
   - ccm

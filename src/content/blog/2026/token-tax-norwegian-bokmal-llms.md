@@ -2,7 +2,7 @@
 title: "The token tax of Norwegian Bokmål in LLMs"
 author: "Tomas Hajek"
 pubDatetime: 2026-05-05T09:00:00+02:00
-featured: false
+featured: true
 draft: false
 tags:
   - ai

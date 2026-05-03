@@ -2,7 +2,7 @@
 title: "From AI assistants to agentic delivery workflows"
 author: "Tomas Hajek"
 pubDatetime: 2026-04-18T09:00:00+02:00
-featured: true
+featured: false
 draft: false
 tags:
   - ai

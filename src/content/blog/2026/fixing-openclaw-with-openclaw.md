@@ -2,7 +2,7 @@
 title: "Fixing OpenClaw with OpenClaw"
 author: "Tomas Hajek"
 pubDatetime: 2026-03-09T22:49:55+01:00
-featured: false
+featured: true
 draft: false
 tags:
   - openclaw

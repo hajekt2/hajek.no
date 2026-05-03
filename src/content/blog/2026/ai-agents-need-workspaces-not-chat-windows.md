@@ -2,7 +2,7 @@
 title: "AI agents need workspaces, not just chat windows"
 author: "Tomas Hajek"
 pubDatetime: 2026-04-28T05:56:47+02:00
-featured: true
+featured: false
 draft: false
 tags:
   - ai

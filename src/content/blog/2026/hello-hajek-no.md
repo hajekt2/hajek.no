@@ -2,7 +2,7 @@
 title: "Hello, hajek.no"
 author: "Tomas Hajek"
 pubDatetime: 2025-09-01T09:00:00+02:00
-featured: true
+featured: false
 draft: false
 tags:
   - personal

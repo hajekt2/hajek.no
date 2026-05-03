@@ -2,7 +2,7 @@
 title: "AI agents are starting to clean the attic"
 author: "Tomas Hajek"
 pubDatetime: 2026-04-27T22:24:08+02:00
-featured: false
+featured: true
 draft: false
 tags:
   - ai
