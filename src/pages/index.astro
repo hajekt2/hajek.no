@@ -27,13 +27,18 @@ const recentPosts = posts2025AndLater.filter(({ data }) => !data.featured);
   <Header />
   <main id="main-content" data-layout="index">
     <section id="hero" class="pt-6 pb-4">
-      <div class="flex flex-col sm:flex-row items-start gap-4">
-        <a href="/about" class="block mx-auto sm:mx-0 group">
+      <div class="flex flex-col sm:flex-row items-stretch gap-4">
+        <a
+          href="/about"
+          class="group mx-auto flex w-40 flex-col items-center justify-center gap-4 sm:mx-0"
+        >
+          <span class="h-0.5 w-full rounded-full bg-red-600" aria-hidden="true"></span>
           <img 
             src="/tomas-hajek-profile-square.png" 
             alt="Tomas Hajek" 
             class="w-40 h-40 rounded-full object-cover flex-shrink-0 transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl"
           />
+          <span class="h-0.5 w-full rounded-full bg-red-600" aria-hidden="true"></span>
         </a>
         <div class="flex-1 text-center sm:text-left">
           <div class="flex items-center gap-2 justify-center sm:justify-start">
@@ -57,7 +62,8 @@ const recentPosts = posts2025AndLater.filter(({ data }) => !data.featured);
           </div>
           <p>
             CCM architecture, document systems, AI tools, and pragmatic engineering from Norway.<br />
-            I write about building useful systems, product ideas, and automation that actually saves time.
+            Co-founder, managing consultant, and lead architect at <a href="https://xperconsulting.no" target="_blank" rel="noopener noreferrer" class="underline decoration-dashed underline-offset-4 hover:text-accent">Xper Consulting AS</a>, where we combine consulting with DocEngine product development.<br />
+            Building <a href="https://ccmforge.com" target="_blank" rel="noopener noreferrer" class="underline decoration-dashed underline-offset-4 hover:text-accent">CCMForge</a>: an agent-native document engineering platform for modern CCM work.
           </p>
           {
             // only display if at least one social link is enabled
