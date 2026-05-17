@@ -23,8 +23,9 @@ But the intelligence does not necessarily have to be owned by Warp itself.
 
 In this prototype, Warp can connect to a local ACP-compatible agent runtime, such as OpenCode or a Codex-style ACP wrapper. Warp acts as the client UI, while the external agent process handles the actual agent logic.
 
-<video controls preload="metadata" style="width: 100%; border-radius: 0.5rem; margin: 2rem 0;" src="https://github.com/user-attachments/assets/f328f672-4998-4d23-b924-e2a63a345a36">
-  <a href="https://github.com/user-attachments/assets/f328f672-4998-4d23-b924-e2a63a345a36">Watch the demo video</a>
+<video controls preload="metadata" playsinline style="width: 100%; border-radius: 0.5rem; margin: 2rem 0;">
+  <source src="/videos/warp-acp-demo.mp4" type="video/mp4" />
+  <a href="/videos/warp-acp-demo.mp4">Watch the demo video</a>
 </video>
 
 That means the agent runtime can own things like:
