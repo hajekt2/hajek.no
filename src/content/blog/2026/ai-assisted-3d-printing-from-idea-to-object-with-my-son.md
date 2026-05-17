@@ -22,8 +22,8 @@ They wanted it on the desk.
 So Tobias and I turned it into a small weekend maker project.
 
 <video controls preload="metadata" playsinline style="width: 100%; border-radius: 0.5rem; margin: 2rem 0;">
-  <source src="/videos/desk-lamp-bulb-holder.mp4" type="video/mp4" />
-  <a href="/videos/desk-lamp-bulb-holder.mp4">Watch the process video</a>
+  <source src="/videos/desk-lamp-bulb-holder-v6-glass-audiov2-linkedin-4x5.mp4" type="video/mp4" />
+  <a href="/videos/desk-lamp-bulb-holder-v6-glass-audiov2-linkedin-4x5.mp4">Watch the process video</a>
 </video>
 
 Instead of opening a CAD tool from scratch and manually building the model, I used an AI agent to help create a parametric 3D design.
