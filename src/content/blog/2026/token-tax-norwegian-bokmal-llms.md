@@ -22,6 +22,8 @@ I used the official Norwegian government text *National Strategy for Artificial 
 
 The Norwegian version was actually slightly shorter:
 
+![Infographic showing Norwegian Bokmål uses 37% to 68% more tokens than English for the same text.](/assets/img/2026/token-tax-norwegian-bokmal-llms/linkedin-token-tax-1.jpg)
+
 - EN: 3,165 characters
 - NO: 3,065 characters
 
@@ -39,6 +41,8 @@ The reason is not that Norwegian is somehow "bad" for AI. It is mostly tokenizer
 English is represented much more heavily in tokenizer training data, so common English words and phrases are often encoded more compactly.
 
 Norwegian has compound words, inflections, and characters like æ, ø, å. Those can fragment into more token pieces.
+
+![Side-by-side tokenizer comparison showing an English phrase uses 2 tokens while a Norwegian compound uses 9.](/assets/img/2026/token-tax-norwegian-bokmal-llms/linkedin-token-tax-2.jpg)
 
 For normal chat, this probably does not matter much.
 
