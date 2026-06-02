@@ -57,6 +57,10 @@ The validation view answers the questions that matter first:
 - Were any errors found?
 - Which validation categories were inspected?
 
+![DocEngine PDF/UA validation result showing a validated PDF/UA-1 report for invoice_2024_10851.pdf with 0 errors and 2872 passed checks.](/assets/img/2026/docengine-pdf-ua-validation/docengine-verapdf-validation-result.png)
+
+*Example validation result in DocEngine: a processed invoice is reported as PDF/UA-1 compliant, with zero errors and all 2,872 checks passing.*
+
 For technical teams, this provides a standards-based quality signal.
 
 For business users, it provides a simple verdict they can understand without reading a low-level validator report.
