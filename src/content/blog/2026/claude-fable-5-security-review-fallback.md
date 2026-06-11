@@ -12,7 +12,6 @@ tags:
   - software-development
   - product
 description: "I tried using Claude Fable 5 for a defensive security review of our SaaS application. Even with safe framing, it refused and fell back to Opus 4.8."
-heroImage: "/assets/img/2026/fable-5-safety-fallback-opus-48.png"
 ---
 
 I have been testing Anthropic's new Claude Fable 5 model and wanted to use it for something very practical: a defensive security review of our SaaS application, DocEngine.
