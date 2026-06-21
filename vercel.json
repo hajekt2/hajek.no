@@ -45,6 +45,31 @@
       "permanent": true
     },
     {
+      "source": "/posts/2026/accessible-pdfs-are-no-longer-optional",
+      "destination": "/posts/2025/accessible-pdfs-are-no-longer-optional",
+      "permanent": true
+    },
+    {
+      "source": "/posts/2026/gjensidige-customer-communication-work",
+      "destination": "/posts/2025/gjensidige-customer-communication-work",
+      "permanent": true
+    },
+    {
+      "source": "/posts/2026/hello-hajek-no",
+      "destination": "/posts/2025/hello-hajek-no",
+      "permanent": true
+    },
+    {
+      "source": "/posts/2026/what-long-lived-ccm-projects-teach-you",
+      "destination": "/posts/2025/what-long-lived-ccm-projects-teach-you",
+      "permanent": true
+    },
+    {
+      "source": "/posts/2026/why-customer-communication-management-still-matters",
+      "destination": "/posts/2025/why-customer-communication-management-still-matters",
+      "permanent": true
+    },
+    {
       "source": "/posts/llm-codes-transform-developer-docs",
       "destination": "/posts/2025/llm-codes-transform-developer-docs",
       "permanent": true
