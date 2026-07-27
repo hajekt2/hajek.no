@@ -7,6 +7,8 @@ export interface Props {
 const { type, data } = Astro.props;
 
 let structuredData = {};
+const readingMinutes =
+  typeof data.readingTime === "string" ? Number.parseInt(data.readingTime, 10) : undefined;
 
 if (type === "BlogPosting") {
   structuredData = {
@@ -37,7 +39,7 @@ if (type === "BlogPosting") {
     articleSection: data.tags?.[0] || "Technology",
     keywords: data.tags?.join(", ") || "",
     wordCount: data.wordCount,
-    timeRequired: data.readingTime,
+    ...(readingMinutes && { timeRequired: `PT${readingMinutes}M` }),
   };
 } else if (type === "Person") {
   structuredData = {
@@ -102,4 +104,4 @@ if (type === "BlogPosting") {
 }
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+<script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />

@@ -12,9 +12,13 @@ export interface Props {
   profile?: string;
   description?: string;
   ogImage?: string;
-  canonicalURL?: string;
+  ogImageAlt?: string;
+  canonicalURL?: string | URL;
+  ogType?: "website" | "article";
+  noindex?: boolean;
   pubDatetime?: Date;
   modDatetime?: Date | null;
+  tags?: string[];
   scrollSmooth?: boolean;
 }
 
@@ -23,57 +27,62 @@ const {
   author = SITE.author,
   profile = SITE.profile,
   description = SITE.desc,
-  ogImage = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png",
-  canonicalURL = new URL(Astro.url.pathname, Astro.url),
+  ogImage = `/${SITE.ogImage}`,
+  ogImageAlt = `${SITE.title} - CCM architecture, document systems, and AI tools`,
+  canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE.website),
+  ogType,
+  noindex = false,
   pubDatetime,
   modDatetime,
+  tags = [],
   scrollSmooth = false,
 } = Astro.props;
 
-const socialImageURL = new URL(ogImage, Astro.url);
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: `${title}`,
-  image: `${socialImageURL}`,
-  datePublished: `${pubDatetime?.toISOString()}`,
-  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: `${author}`,
-      ...(profile && { url: profile }),
-    },
-  ],
-};
+const canonicalHref = new URL(canonicalURL, Astro.site ?? SITE.website).href;
+const socialImageURL = new URL(ogImage, Astro.site ?? SITE.website).href;
+const resolvedOgType = ogType ?? (pubDatetime ? "article" : "website");
+const ogImageType = socialImageURL.match(/\.jpe?g(?:$|\?)/i)
+  ? "image/jpeg"
+  : socialImageURL.match(/\.webp(?:$|\?)/i)
+    ? "image/webp"
+    : "image/png";
 ---
 
 <!doctype html>
-<html lang=`${SITE.lang ?? "en"}` class={`${scrollSmooth && "scroll-smooth"}`}>
+<html lang={SITE.lang ?? "en"} class:list={{ "scroll-smooth": scrollSmooth }}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="view-transition" content="same-origin" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="canonical" href={canonicalHref} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- General Meta Tags -->
     <title>{title}</title>
-    <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
+    <meta property="og:type" content={resolvedOgType} />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:url" content={canonicalHref} />
     <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:secure_url" content={socialImageURL} />
+    <meta property="og:image:type" content={ogImageType} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
-    <!-- Article Published/Modified time -->
+    <!-- Article metadata -->
     {
       pubDatetime && (
         <meta
@@ -90,20 +99,17 @@ const structuredData = {
         />
       )
     }
+    {resolvedOgType === "article" && <meta property="article:author" content={profile} />}
+    {tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={socialImageURL} />
-
-    <!-- Google JSON-LD Structured data -->
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify(structuredData)}
-    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hajekt21" />
+    <meta name="twitter:creator" content="@hajekt21" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Enable RSS feed auto-discovery  -->
     <!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery -->
@@ -114,7 +120,8 @@ const structuredData = {
       href={`${SITE.website}rss.xml`}
     />
 
-    <meta name="theme-color" content="" />
+    <meta name="theme-color" content="#006cac" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#ff6b01" media="(prefers-color-scheme: dark)" />
 
     {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
@@ -144,7 +151,7 @@ const structuredData = {
     </script>
     
     <!-- Twitter Widget Script -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script is:inline async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </head>
   <body>
     <slot />

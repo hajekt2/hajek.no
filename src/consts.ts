@@ -35,7 +35,7 @@ export const SITE: Site = {
   profile: "https://hajek.no/about",
   desc: "CCM architecture, DocEngine, PDF/UA post-composition, high-performance document composition, AI tools, and pragmatic engineering from Norway.",
   title: "Tomas Hajek",
-  ogImage: "tomas-hajek-profile.png",
+  ogImage: "og.png",
   lightAndDarkMode: true,
   postPerIndex: 10,
   postPerPage: 10,

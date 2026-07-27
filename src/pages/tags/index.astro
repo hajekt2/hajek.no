@@ -13,7 +13,10 @@ const posts = await getCollection("blog");
 const tags = getUniqueTags(posts);
 ---
 
-<Layout title={`Tags | ${SITE.title}`}>
+<Layout
+  title={`Topics | ${SITE.title}`}
+  description="Browse Tomas Hajek's articles by topic, including CCM, document systems, PDF accessibility, AI agents, and software engineering."
+>
   <Header />
   <Main pageTitle="Tags" pageDesc="All the tags used in posts.">
     <ul>

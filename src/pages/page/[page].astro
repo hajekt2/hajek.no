@@ -6,7 +6,7 @@
 	import Layout from "../../layouts/Layout.astro";
 
 	export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-	  const allPosts = await getCollection("blog");
+	  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
 
   // Deduplicate posts by id if there are any duplicates
   const idMap = new Map();
@@ -34,7 +34,11 @@ const { page } = Astro.props;
 const { data: posts, currentPage, lastPage } = page;
 ---
 
-<Layout title={`Page ${currentPage} | ${SITE.title}`} description={SITE.desc}>
+<Layout
+  title={`Latest Posts - Page ${currentPage} | ${SITE.title}`}
+  description={`Page ${currentPage} of the latest articles by Tomas Hajek.`}
+  noindex
+>
   <section class="py-8">
     <h1 class="text-4xl font-bold tracking-tight mb-10">Latest Posts</h1>
 

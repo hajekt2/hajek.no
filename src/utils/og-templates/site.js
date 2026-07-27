@@ -3,12 +3,14 @@ import { SITE } from "@/config";
 import loadGoogleFonts from "../loadGoogleFont";
 
 export default async () => {
+  const tagline = "CCM architecture · Document systems · AI tools";
+
   return satori(
     {
       type: "div",
       props: {
         style: {
-          background: "#fefbfb",
+          background: "#fdfdfd",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -23,8 +25,8 @@ export default async () => {
                 position: "absolute",
                 top: "-1px",
                 right: "-1px",
-                border: "4px solid #000",
-                background: "#ecebeb",
+                border: "4px solid #006cac",
+                background: "#e8f4fb",
                 opacity: "0.9",
                 borderRadius: "4px",
                 display: "flex",
@@ -39,8 +41,8 @@ export default async () => {
             type: "div",
             props: {
               style: {
-                border: "4px solid #000",
-                background: "#fefbfb",
+                border: "4px solid #161616",
+                background: "#fdfdfd",
                 borderRadius: "4px",
                 display: "flex",
                 justifyContent: "center",
@@ -77,15 +79,23 @@ export default async () => {
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 72, fontWeight: "bold" },
+                              style: {
+                                color: "#006cac",
+                                fontSize: 76,
+                                fontWeight: "bold",
+                              },
                               children: SITE.title,
                             },
                           },
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 28 },
-                              children: SITE.desc,
+                              style: {
+                                color: "#161616",
+                                fontSize: 32,
+                                lineHeight: 1.4,
+                              },
+                              children: tagline,
                             },
                           },
                         ],
@@ -99,6 +109,7 @@ export default async () => {
                           justifyContent: "flex-end",
                           width: "100%",
                           marginBottom: "8px",
+                          color: "#ff6b01",
                           fontSize: 28,
                         },
                         children: {
@@ -122,7 +133,7 @@ export default async () => {
       width: 1200,
       height: 630,
       embedFont: true,
-      fonts: await loadGoogleFonts(SITE.title + SITE.desc + SITE.website),
+      fonts: await loadGoogleFonts(SITE.title + tagline + SITE.website),
     },
   );
 };

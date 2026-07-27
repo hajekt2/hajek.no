@@ -12,13 +12,23 @@ import getSortedPosts from "@/utils/getSortedPosts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return paginate(getSortedPosts(posts), { pageSize: SITE.postPerPage });
+  return paginate(getSortedPosts(posts), { pageSize: SITE.postPerPage }).filter(
+    ({ params }) => params.page,
+  );
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+const pageTitle =
+  page.currentPage > 1
+    ? `Posts - Page ${page.currentPage} | ${SITE.title}`
+    : `Posts | ${SITE.title}`;
+const pageDescription =
+  page.currentPage > 1
+    ? `Page ${page.currentPage} of Tomas Hajek's articles about CCM architecture, document systems, PDF accessibility, and AI engineering.`
+    : `Browse Tomas Hajek's articles about CCM architecture, document systems, PDF accessibility, and pragmatic AI engineering.`;
 ---
 
-<Layout title={`Posts | ${SITE.title}`}>
+<Layout title={pageTitle} description={pageDescription}>
   <Header />
   <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
     <ul>
