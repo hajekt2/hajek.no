@@ -11,22 +11,22 @@ tags:
   - engineering
   - architecture
   - code-review
-description: "AI agents increase code output faster than teams increase review capacity. The constraint moves to understanding, verification, and ownership."
+description: "AI agents increase code output faster than teams increase review capacity. Senior attention moves to understanding, verification, and ownership."
 ---
 
-AI coding agents can scaffold features, refactor files, add tests, migrate APIs, generate configuration, and open a pull request before a team has finished discussing the implications.
+AI coding agents can scaffold a feature, refactor files, add tests, and open a pull request before the team has finished discussing the change.
 
-Someone still has to understand what changed. That work usually lands with a senior developer, tech lead, or architect who must validate the behavior, check the architecture, and decide whether the team wants to maintain the result.
+Someone still has to understand it. That work usually lands with a senior developer, tech lead, or architect who validates the behavior, checks the architecture, and decides whether the team wants to maintain it.
 
-Code generation has become faster than comprehension.
+Code generation is now faster than review.
 
 ## Generated code still becomes owned code
 
-A quickly generated patch is not the same as delivered software.
+A generated patch is not delivered software.
 
-A coding agent can produce a large diff in minutes. The team may own the result for years, including every incident, edge case, security problem, performance issue, and future refactoring.
+An agent can produce a large diff in minutes. The team may own its incidents, edge cases, security problems, and refactoring for years.
 
-If an agent creates 800 lines of code, a senior engineer may need to reconstruct the reasoning behind those lines:
+If an agent creates 800 lines, a senior engineer may need to reconstruct why:
 
 - Why was this design chosen?
 - Which assumptions are hidden in the implementation?
@@ -35,53 +35,53 @@ If an agent creates 800 lines of code, a senior engineer may need to reconstruct
 - Are the tests proving behavior or just confirming the implementation?
 - Is this code simple enough that someone else can safely change it later?
 
-Compilation does not answer any of those questions.
+A green build does not answer those questions.
 
 ## The review burden is real
 
-AWS has written about the problem using systems thinking: when AI assistants speed up coding, bottlenecks shift elsewhere in the value stream. One of their examples is pull request review queues, where senior developers become overloaded reviewing AI-generated code that is syntactically correct but raises architectural questions.
+AWS describes the same systems problem. When AI speeds up coding, the bottleneck moves elsewhere. One example is a pull request queue where senior developers review syntactically correct code with unresolved architectural questions.
 
-The 2025 Stack Overflow Developer Survey found that 84% of respondents used or planned to use AI tools, and 51% of professional developers used them daily. Trust lagged behind adoption: 46% distrusted AI output accuracy while 33% trusted it. The biggest frustration, reported by 66%, was that AI solutions are "almost right, but not quite". Another 45% said debugging AI-generated code takes more time.
+The 2025 Stack Overflow Developer Survey found that 84% of respondents used or planned to use AI tools, and 51% of professional developers used them daily. But 46% distrusted AI output accuracy while 33% trusted it. The biggest frustration, reported by 66%, was that answers were "almost right, but not quite". Another 45% said debugging AI-generated code takes more time.
 
-AI is useful enough to produce work, but not reliable enough to remove verification.
+The tools produce useful work, but they do not remove verification.
 
-Jellyfish found the same pattern in pull request data. Higher AI adoption correlated with both more throughput and larger pull requests. Moving from 0% to 100% AI adoption corresponded to PRs growing from 74.8 to 88.4 additions on average, an 18.2% increase. Their interpretation is balanced: bigger PRs may contain more thorough handling and documentation, but they may also be more complex and harder to maintain.
+Jellyfish found higher AI adoption correlated with more throughput and larger pull requests. Moving from 0% to 100% adoption corresponded to PRs growing from 74.8 to 88.4 additions on average, an 18.2% increase. Bigger PRs may include better handling and documentation. They may also be harder to review and maintain.
 
-METR's 2025 study adds a useful cold shower. In their randomized trial with experienced open-source developers working on real issues in large repositories, developers were 19% slower when allowed to use early-2025 AI tools, even though they expected to be faster. That does not mean AI makes developers slower in general. The study is narrower than that. But it is strong evidence that in mature codebases, the cost of understanding, steering, correcting, and verifying AI output can eat the apparent speed gain.
+In METR's 2025 randomized trial, experienced open-source developers were 19% slower with early-2025 AI tools, although they expected to be faster. The study does not show that AI always makes developers slower. It does show that steering and verification can consume the apparent gain in mature codebases.
 
-DORA's 2025 report measures AI-assisted development at the system level instead of reducing it to individual typing speed or local task completion. An agent-generated patch creates value only when the organization can safely absorb, verify, operate, and maintain the increased flow of changes.
+DORA's 2025 report looks at AI-assisted development as a system, not individual typing speed. An agent-generated patch creates value only when the organization can verify, operate, and maintain it.
 
-Together, these results show why teams should measure delivery at the system level rather than count generated code or completed local tasks.
+These results make code volume a poor productivity measure.
 
 ## Senior people become the constraint
 
-Multiple developers and agents can produce changes in parallel. Architectural judgment does not scale at the same rate.
+Agents can produce changes in parallel. Architectural judgment does not scale at the same rate.
 
-A senior reviewer checks whether the implementation respects boundaries, whether the error handling matches operational reality, whether the data model is drifting, and whether a simple business rule is becoming a framework.
+A senior reviewer checks boundaries, failure handling, data-model drift, and whether a simple business rule is turning into a framework.
 
-This is exhausting because it requires holding the existing system, the proposed change, the business context, and the future maintenance cost in your head at the same time.
+The reviewer has to hold the existing system, proposed change, business context, and maintenance cost in mind at the same time.
 
-AI makes this harder when it produces plausible code without a clear design trail.
+Plausible code without a design trail makes that harder.
 
-With agent-generated code, the human author may not understand every line or remember the tradeoffs behind it. The reviewer then has to inspect the patch and determine whether its nominal owner understands it well enough to support it.
+The named author may not understand every generated line or remember its tradeoffs. The reviewer then has to decide whether anybody understands the patch well enough to support it.
 
 ## The slope toward vibe coding
 
-When agents produce changes faster than you can review them, the natural response is to trust the tests, skim the diff, and move on. Sometimes that is reasonable. For low-risk code, internal tools, prototypes, or well-contained changes, full manual review of every line may be wasteful.
+When agents produce changes faster than I can review them, the easy response is to trust the tests and skim the diff. For low-risk code, internal tools, prototypes, or contained changes, that may be reasonable.
 
-The risk begins when a team merges code it does not understand because the demo works and the agent sounded confident.
+The risk starts when a team merges code it does not understand because the demo works and the agent sounds confident.
 
-Vibe coding is fine for experiments, learning, and throwaway prototypes. It becomes dangerous when the same review standard reaches production systems.
+Vibe coding is fine for experiments and throwaway prototypes. It is a bad review standard for production.
 
-You can ship without understanding for a while. But the debt accumulates in places where tests are weak, requirements are fuzzy, and architecture matters. Eventually someone has to debug it. Usually under time pressure. Usually the same senior people who were already overloaded.
+Code can ship without being understood for a while. The debt collects where tests are weak, requirements are unclear, and architecture matters. Somebody eventually debugs it under time pressure, usually the same senior people who were already overloaded.
 
 ## Code review has to change
 
-Teams need to change what they expect from code review and from the agents producing the code.
+Teams need different expectations for the agent and the review.
 
-A pull request should not merely contain a diff. It should contain evidence.
+A pull request needs evidence, not only a diff.
 
-For AI-assisted work, I want to see things like:
+For AI-assisted work, I want:
 
 - the problem statement in plain language,
 - the intended behavior,
@@ -92,27 +92,27 @@ For AI-assisted work, I want to see things like:
 - the commands run,
 - screenshots or logs where relevant,
 - known limitations,
-- and a short explanation of why the change is safe to merge.
+- a short explanation of why the change is safe to merge.
 
-This evidence compresses the work for the reviewer, who should not have to reconstruct the full design from the diff.
+This gives the reviewer a design trail without forcing them to reconstruct it from the diff.
 
-Agents should help produce this evidence. If an agent can write the code, it can also summarize the design, list the files changed, explain the test strategy, and identify risky areas. If it cannot explain the change clearly, that is already a review signal.
+The agent should produce this evidence. If it can write the code, it can list the changed files, explain the tests, and identify risky areas. If it cannot explain the change clearly, that is a review signal.
 
 ## Smaller diffs matter more now
 
-AI makes large diffs cheap, which makes small batches more important. Teams should use faster generation to produce narrower, safer changes instead of putting more code into each pull request.
+AI makes large diffs cheap, so small batches matter more. Faster generation should produce narrower changes, not larger pull requests.
 
-A good AI-assisted workflow should produce smaller tasks, narrower pull requests, stronger tests, clear acceptance criteria, explicit design notes, and repeatable evidence.
+A good workflow produces small tasks, narrow pull requests, clear acceptance criteria, and repeatable evidence.
 
-The useful measure is trustworthy progress rather than code volume.
+I measure trustworthy progress, not code volume.
 
 ## Architecture becomes a review discipline
 
-Architecture used to be partly enforced by implementation friction. If a change was hard to make, people had time to notice that it crossed boundaries or violated the design.
+Implementation friction used to expose some architectural problems. A hard change gave people time to notice crossed boundaries.
 
-Agents reduce that friction. They can make sweeping changes quickly. They can connect things that should not be connected. They can produce a working implementation that quietly damages the structure of the system.
+Agents remove that friction. They can connect things that should stay separate and produce working code that damages the system structure.
 
-Architecture therefore needs lightweight, reviewable constraints:
+Architecture needs reviewable constraints:
 
 - module boundaries,
 - dependency rules,
@@ -123,13 +123,13 @@ Architecture therefore needs lightweight, reviewable constraints:
 - observability standards,
 - and clear examples of good local design.
 
-The better these constraints are encoded, the easier it becomes for both humans and agents to stay inside them.
+Repository instructions and automated checks should enforce as many of these constraints as possible.
 
-The next productivity gains will come from engineering systems around agents: repository instructions, isolated sandboxes, checkpoints, architectural rules, automated tests, observability, and review evidence.
+The next gains will come from the system around the agent: repository instructions, isolated workspaces, checkpoints, tests, observability, and review evidence.
 
 ## The new senior skill: verification design
 
-Senior developers will still read code, but manually inspecting every generated line cannot be the only control. They need verification systems that make code review less heroic:
+Senior developers will still read code, but line-by-line inspection cannot be the only control. They need verification systems:
 
 - tests that capture business behavior,
 - linters and static analysis that enforce mechanical rules,
@@ -139,21 +139,19 @@ Senior developers will still read code, but manually inspecting every generated 
 - observability that catches real-world failure,
 - and pull request templates that force evidence into the open.
 
-Human review should focus on the things humans are still best at: intent, judgment, taste, ownership, risk, and fit with the larger system.
+Human review should focus on intent, judgment, ownership, risk, and fit with the larger system.
 
-If senior people spend their time catching formatting issues, missing null checks, or obvious test gaps, the process is broken. Machines should handle that.
-
-If senior people spend their time deciding whether a change belongs in the system at all, they are doing the work that matters.
+Machines should catch formatting, missing null checks, and obvious test gaps. Senior reviewers should decide whether the change belongs in the system.
 
 ## My current rule
 
-My working rule is simple:
+My rule is:
 
 > I do not need to type every line, but I need to understand what I merge.
 
-AI can help me move faster. It can help me explore. It can write first drafts. It can generate tests. It can review its own output. It can find mistakes I would miss.
+AI helps me explore, draft code, generate tests, review changes, and find mistakes I would miss.
 
-The team still owns the consequences. The practical constraint is how much code it can review, verify, and support without exhausting the people whose judgment the system depends on.
+The team still owns the consequences. Its capacity is the amount of code it can review, verify, and support without exhausting the people who carry the architectural judgment.
 
 ## Sources
 

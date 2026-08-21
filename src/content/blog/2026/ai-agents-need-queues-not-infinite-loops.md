@@ -11,28 +11,28 @@ tags:
   - software-development
   - engineering
   - automation
-description: "A 14-hour Codex run showed why long agent tasks need a clear finish line, reviewable evidence, and a queue that can accept unfinished work."
+description: "After a 14-hour Codex run, I want long agent tasks controlled by a queue with a clear finish line and reviewable evidence."
 ---
 
-I recently let Codex work on one goal for more than 14 hours. It read files, made changes, got stuck, tried another approach, ran validation, summarized progress, and continued.
+I let Codex work on one goal for more than 14 hours. It read files, made changes, got stuck, changed approach, ran validation, reported progress, and continued.
 
-The workflow held well enough to be useful, but not well enough to leave unattended. The run changed how I think about long agent tasks. The agent loop is a worker. A queue should control what it works on, what counts as complete, and where unfinished work goes next.
+The workflow was useful, but I would not leave it unattended. I now see the agent loop as a worker. A queue should decide what it works on, what counts as complete, and where unfinished work goes next.
 
 ## A loop needs a queue
 
-Agent loops, Ralph loops, goal mode, autopilot mode, and other long-running patterns share the same basic idea. The agent plans, acts, checks, adjusts, and continues until a goal is complete.
+Agent loops, Ralph loops, goal mode, and autopilot all follow the same cycle. The agent plans, acts, checks, adjusts, and continues until the goal is complete.
 
-That is a real pattern. It works better than ordinary chat for many tasks because software work is naturally iterative. You try something, tests fail, you inspect the failure, you change direction, and you try again.
+This works better than ordinary chat for many software tasks. Tests fail, the agent inspects the failure, changes direction, and tries again.
 
-The trap is treating the running agent as the unit of work. Starting a loop and waiting for it to converge gives the process weak boundaries.
+The running agent should not be the unit of work. Starting a loop and waiting for it to converge gives the process weak boundaries.
 
-There is a queue of bugs, features, cleanup tasks, incidents, review comments, migration steps, test failures, security findings, documentation gaps, and product ideas. Humans pull items from the queue. CI systems pull items from the queue. Support teams add items to the queue. Product managers reorder the queue. Reviewers push items back into the queue when the evidence is not good enough.
+The queue contains bugs, features, incidents, review comments, migration steps, test failures, and security findings. People and CI pull work from it. Reviewers return an item when the evidence is not good enough.
 
 The queue records and orders the work. The loop handles one item.
 
 ## What the 14-hour run taught me
 
-A long run exposes constraints that a short demo can hide:
+A long run exposes what a short demo hides:
 
 - the task definition must be precise,
 - the agent needs good instructions,
@@ -40,25 +40,25 @@ A long run exposes constraints that a short demo can hide:
 - progress needs to be logged,
 - and the final result must be reviewable by a human.
 
-A 14-hour run can produce a lot of output. That is both the benefit and the danger. If the result is one huge pile of changes with no trail of reasoning, then the agent has not really delivered software. It has delivered a review problem.
+A 14-hour run can produce a large diff. If it has no trail of decisions and checks, the agent delivered a review problem.
 
-AI makes code generation cheaper. It does not automatically make understanding cheaper. In fact, if we are careless, it makes understanding more expensive because more code enters the system faster than humans can absorb it.
+AI makes code generation cheaper. Understanding can become more expensive when code enters the system faster than people can absorb it.
 
-The useful outcome is one well-defined item moved through the queue with enough evidence for a human to accept, reject, or redirect it.
+I want one well-defined item moved through the queue with enough evidence to accept, reject, or redirect it.
 
 ## How an item moves through the queue
 
-A task may begin with exploration to confirm the bug, locate the code, estimate the risk, and define a likely fix. That investigation can produce a better-scoped implementation item. An agent implements it, CI checks it, another agent may review it, and a human decides whether the evidence supports a merge.
+A task may start with exploration to confirm the bug, locate the code, and estimate the risk. That can produce a smaller implementation item. An agent implements it, CI checks it, another agent may review it, and a human decides whether to merge.
 
-The agent does not replace the process. It becomes another worker in the process.
+The agent is another worker in the process.
 
-A rejected or incomplete change returns to the queue with new information. The agent does not need to stay alive forever because the queue preserves the state of the work.
+A rejected or incomplete change returns to the queue with new information. The queue preserves the state, so the agent does not need to run forever.
 
 ## Goal mode needs a definition of done
 
-Long-running goal mode is only useful when the goal is concrete.
+Long-running goal mode needs a concrete goal.
 
-"Improve the app," "fix all accessibility problems," and "make the codebase better" are wishes rather than executable goals.
+"Improve the app," "fix all accessibility problems," and "make the codebase better" are not executable goals.
 
 A useful goal looks more like this:
 
@@ -71,25 +71,23 @@ A useful goal looks more like this:
 - stop when these checks pass,
 - ask for help if this class of blocker appears.
 
-The longer the agent runs, the more important this becomes. A five-minute task can survive a vague prompt. A 14-hour task cannot.
+A five-minute task may survive a vague prompt. A 14-hour task will expand into nearby work.
 
-Without a definition of done, the agent will keep finding nearby work. Some of that work may be useful. Some may be noise. Some may be actively harmful because it expands scope and makes review harder.
+Without a definition of done, the agent keeps finding nearby work. Some of it may help, but it expands scope and makes review harder.
 
-The agent needs a finish line, and the system needs a way to return unfinished work to the queue.
+The agent needs a finish line. Unfinished work goes back to the queue.
 
 ## The queue also protects senior attention
 
-Senior attention is the scarce resource in AI-assisted development.
+Senior attention is the constraint in AI-assisted development.
 
-If agents make it possible to produce five times more pull requests, but every pull request still requires the same senior engineer to reconstruct the design from scratch, then the team has not solved delivery. It has moved the bottleneck.
+If agents produce five times more pull requests and the same senior engineer must reconstruct every design, the team has moved the bottleneck.
 
-Queues help because they make review selective and structured.
+The queue makes review selective.
 
-Not every queue item needs the same level of human attention. Some changes are low-risk and can be mostly machine-verified. Some require architectural review. Some require product judgment. Some should never have been started.
+Low-risk changes can be mostly machine-verified. Architectural changes need explicit review. Some tasks should never have started.
 
-That classification should happen before and after agent work.
-
-Before delegation, the team decides whether the task is safe for an agent. Afterward, the evidence determines how much human review it needs.
+The team classifies the task before delegation. Afterward, the evidence determines how much human review it needs.
 
 Agent workflows should mature through better routing:
 
@@ -99,10 +97,10 @@ Agent workflows should mature through better routing:
 - unclear tasks go to exploration before implementation,
 - risky tasks are split before any coding starts.
 
-This routing is ordinary queue management applied to software delivery.
+This is ordinary queue management applied to software delivery.
 
 ## The operating model
 
-Long-running agents are useful workers inside an engineering system. The queue defines their tasks, automated checks provide evidence, and human judgment remains the ownership boundary.
+Long-running agents are workers inside an engineering system. The queue defines the task, automated checks provide evidence, and people own the decision.
 
-The duration of the 14-hour run matters less than whether its result can be understood, verified, reviewed, and safely merged.
+After 14 hours, I care about whether I can understand, verify, review, and safely merge the result.

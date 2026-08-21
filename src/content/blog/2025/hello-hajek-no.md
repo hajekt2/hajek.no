@@ -9,19 +9,21 @@ tags:
   - ccm
   - ai
   - engineering
-description: "A short note on why I started writing about CCM, document systems, AI tools, and the engineering behind them."
+description: "Why I started writing about CCM, document systems, AI tools, and the engineering behind them."
 ---
 
-This site is my public notebook.
+This site is my public notebook about document systems and AI.
 
-I work mostly in customer communication management: document composition, transformation, delivery, accessibility, and the infrastructure around those systems. A small template change can affect business rules, batch jobs, archives, delivery channels, and thousands of customer documents.
+I work mostly in customer communication management, or CCM. That means document composition, transformation, delivery, accessibility, and the infrastructure around it.
 
-I am especially interested in the intersection of CCM and AI:
+A small template change can affect business rules, batch jobs, archives, delivery channels, and thousands of customer documents. The template is often the easy part.
 
-- document quality checks that actually understand the business context,
+I am especially interested in where CCM and AI meet:
+
+- document quality checks that understand the business context,
 - migration tooling for old templates and composition systems,
 - accessibility workflows that are less manual,
-- developer and consultant automation that saves real time,
-- product ideas that come from field experience rather than slide decks.
+- automation that saves developers and consultants real time,
+- products based on problems from real projects.
 
 I will use this place for technical notes, build logs, and opinions that are too long for chat.

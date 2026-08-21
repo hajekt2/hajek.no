@@ -9,12 +9,12 @@ tags:
   - llm
   - tokenization
   - norwegian
-description: "A small experiment comparing English and Norwegian Bokmål token counts for the same official government text."
+description: "The same government foreword used 37.4% to 67.5% more tokens in Norwegian Bokmål than in English, despite fewer characters."
 ---
 
-I did a small experiment on the token cost of Norwegian Bokmål in LLMs.
+I compared the token cost of the same government text in English and Norwegian Bokmål.
 
-The question was simple:
+The question was:
 
 > If the same text exists in English and Norwegian, how different is the token count?
 
@@ -34,21 +34,15 @@ It still used more tokens:
 - Claude Sonnet 4.6: +60.6%
 - Gemini 2.5 Pro: +44.1%
 
-That surprised me.
+I expected a smaller difference.
 
-The reason is not that Norwegian is somehow "bad" for AI. It is mostly tokenizer compression.
-
-Common English words and phrases are often encoded more compactly by these tokenizers.
-
-Norwegian has compound words, inflections, and characters like æ, ø, å. Those can fragment into more token pieces.
+The reason is tokenizer compression. Common English words and phrases are often encoded more compactly. Norwegian compound words, inflections, and characters such as æ, ø, and å can split into more pieces.
 
 ![Side-by-side tokenizer comparison showing an English phrase uses 2 tokens while a Norwegian compound uses 9.](/assets/img/2026/token-tax-norwegian-bokmal-llms/linkedin-token-tax-2.jpg)
 
-For normal chat, this probably does not matter much.
+For normal chat, this probably does not matter much. It can matter in large contexts, RAG pipelines, coding agents, document processing, and batch jobs.
 
-For large contexts, RAG pipelines, coding agents, document processing, summarization, and batch jobs, it can matter quite a lot.
-
-For this sample, the Norwegian text carried the same meaning in slightly fewer characters but required 37-68% more tokens. I would like to run the same comparison on Czech next.
+In this sample, Norwegian used slightly fewer characters and 37.4% to 67.5% more tokens. I want to run the same comparison on Czech next.
 
 The repo with the experiment is here:
 

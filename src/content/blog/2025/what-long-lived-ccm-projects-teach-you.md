@@ -9,12 +9,12 @@ tags:
   - consulting
   - opentext-exstream
   - xper
-description: "Long-running CCM work depends on accumulated knowledge of templates, integrations, business rules, production windows, and the cost of a wrong change."
+description: "Long-running CCM work builds knowledge of templates, integrations, business rules, production windows, and the cost of a wrong change."
 ---
 
 The longer I work with a document platform, the less I see isolated templates.
 
-I see the business rule that feeds a paragraph, the batch window that limits a deployment, the archive that expects a specific format, and the delivery system that treats one document type differently from another. I also see the odd exception that looks wrong until someone explains the incident that created it ten years ago.
+I see the business rule behind a paragraph, the batch window that limits a deployment, and the archive that expects one exact format. I also see the odd exception that looks wrong until someone explains the incident that created it ten years ago.
 
 That context changes how you make technical decisions.
 
@@ -22,14 +22,14 @@ Document platforms produce letters, policies, decisions, invoices, statements, a
 
 ## Knowledge reduces risk
 
-Long-running CCM work builds a form of technical memory. You learn which integrations are fragile, which documents are business-critical, who owns the legal text, and what must happen when a batch fails halfway through.
+Long-running CCM work builds technical memory. You learn which integrations are fragile, which documents are business-critical, who owns the legal text, and what must happen when a batch fails halfway through.
 
 This knowledge is difficult to reconstruct from code and configuration alone. Some of it lives in operational routines and in the reasons behind old decisions.
 
-Trust grows when a consultant can improve the system without treating every unusual detail as accidental complexity. That requires asking why a document exists, who depends on it, what happens when it is wrong, and which parts can safely be standardized.
+A consultant has to improve the system without treating every unusual detail as accidental complexity. That means asking why a document exists, who depends on it, what happens when it is wrong, and which parts are safe to standardize.
 
 ## Better tools should preserve the context
 
-Experienced consultants still carry too much of this knowledge in their heads. AI and automation can help with template analysis, validation, accessibility checks, and migration work. They can also record evidence that would otherwise disappear after a project.
+Experienced consultants still carry too much of this knowledge in their heads. AI and automation can help analyze templates, validate output, check accessibility, and support migrations. They can also record evidence that would otherwise disappear after the project.
 
-The useful tools are the ones that make the existing knowledge easier to inspect and apply. The final decision still belongs to someone who understands the system and the business cost of changing it.
+I want tools that make this knowledge easier to inspect and use. The final decision still belongs to someone who understands the system and the cost of changing it.
