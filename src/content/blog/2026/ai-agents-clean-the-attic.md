@@ -1,5 +1,5 @@
 ---
-title: "AI agents are starting to clean the attic"
+title: "AI agents are useful for old software backlogs"
 author: "Tomas Hajek"
 pubDatetime: 2026-04-27T22:24:08+02:00
 featured: true
@@ -9,18 +9,16 @@ tags:
   - agents
   - software-maintenance
   - engineering
-description: "Some of the best agent work may be the boring cleanup: stale bugs, duplicate issues, old PRs, and half-finished ideas."
+description: "Agents can inspect stale bugs, duplicate issues, old PRs, and half-finished ideas without getting bored. The decision still needs evidence."
 ---
 
-AI agents are starting to clean the attic of software projects.
-
-That sounds less exciting than "AI builds an app from scratch", but I think it may matter more. A lot of software work is not greenfield creation. It is deciding what still matters.
+A lot of useful agent work is cleaning old software backlogs. It is less exciting than building an app from scratch, but deciding what still matters can save more time.
 
 Old bugs. Duplicate issues. Stale PRs. Half-finished ideas. Broken documentation. TODOs that survived three rewrites and nobody remembers why.
 
-Humans are bad at this kind of cleanup because it is emotionally unrewarding. You spend hours reading old context just to close something. Or you reopen a bug and discover it was fixed two years ago. Or you avoid the backlog entirely because every item feels like it might contain a trap.
+Humans avoid this cleanup because the reward is poor. You can spend an hour reading old context only to learn that somebody fixed the bug two years ago.
 
-Agents are useful here because they can tolerate boredom.
+Agents do not get bored by that work.
 
 A good agent can read the old issue, inspect the current code, search related commits, check whether the behavior still exists, and propose one of a few actions:
 
@@ -30,6 +28,6 @@ A good agent can read the old issue, inspect the current code, search related co
 - unclear, ask a human one specific question,
 - risky, leave it alone.
 
-The important part is evidence. I do not want an agent randomly closing tickets because it sounds confident. I want the boring proof: files checked, commands run, current behavior observed, links found, decision recorded.
+I do not want an agent closing tickets because it sounds confident. I want the files checked, commands run, current behavior observed, links found, and decision recorded.
 
-An agent can bring forgotten work back to a state where a human can make a quick decision. The useful output is the evidence behind that decision, not the number of tickets the agent managed to close.
+An agent can bring forgotten work to the point where a human can make a quick decision. I care about the evidence behind that decision, not the number of tickets it closed.

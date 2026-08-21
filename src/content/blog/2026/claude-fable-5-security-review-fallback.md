@@ -11,60 +11,58 @@ tags:
   - docengine
   - software-development
   - product
-description: "I tried using Claude Fable 5 for a defensive security review of our SaaS application. Even with safe framing, it refused and fell back to Opus 4.8."
+description: "Claude Fable 5 refused a defensive review of our own SaaS application twice, including a prompt that explicitly banned exploit guidance."
 ---
 
-I have been testing Anthropic's new Claude Fable 5 model and wanted to use it for something very practical: a defensive security review of our SaaS application, DocEngine.
+I tried Claude Fable 5 on a defensive security review of our SaaS application, DocEngine.
 
-Nothing exotic. No malware. No exploit generation. No "show me how to break into this system." Just a normal security review from the point of view of a software team trying to find risks before someone else does.
+I did not ask for malware, exploit code, or instructions to break into a system. I asked it to find risks in software we own.
 
-My first attempts triggered Fable 5's safety measures and the session fell back to Claude Opus 4.8.
+The first prompt triggered Fable 5's safety measures, and the session fell back to Claude Opus 4.8.
 
 The message was:
 
 > Fable 5's safety measures flagged this message. They may flag safe, normal content as well. These measures let us bring Mythos-level capability in other areas sooner, and we're working to refine them. Switched to Opus 4.8.
 
-Fair enough, I thought. Maybe my prompt was too close to offensive security language.
+I thought the prompt might have sounded too close to offensive security work, so I tried again with explicit limits:
 
 So I tried again, this time with a much safer framing:
 
 > Perform a defensive security review of this SaaS application. Do not provide exploit code, weaponized payloads, persistence mechanisms, bypass instructions, or step-by-step attack execution. Focus on risk identification, secure design, OWASP-style findings, severity, affected components, and remediation guidance.
 
-And it still triggered the failsafe.
+It triggered the same fallback.
 
 ![Claude Fable 5 safety fallback message](/assets/img/2026/fable-5-safety-fallback-opus-48.png)
 
-According to Anthropic's own documentation, Claude Fable 5 includes additional safety classifiers. One of the categories is cyber. Anthropic also explicitly says that benign cybersecurity work can trigger these safeguards. When that happens, the request is not treated as a normal error. It is a refusal, and the recommended fallback is another Claude model, such as Opus 4.8.
+Anthropic documents additional safety classifiers in Claude Fable 5, including a cyber classifier. The documentation says benign cybersecurity work can trigger it. The request then becomes a refusal, with another model such as Opus 4.8 used as fallback.
 
-The fallback appears to be the product behaving as documented rather than a random glitch.
+The product appears to be behaving as documented.
 
-I understand why. The same model capability that helps a developer find insecure authorization logic, weak tenant isolation, broken session handling, or dangerous file-processing paths could also help an attacker. The line between "defensive review" and "offensive enablement" is not always obvious from a prompt, especially when the task involves a real codebase and real security reasoning.
+I understand the reason. A model that finds insecure authorization, weak tenant isolation, broken sessions, or dangerous file processing can also help an attacker. A classifier may not know who owns the codebase.
 
-But from a software team's point of view, this creates an awkward problem.
+For a software team, it creates a real problem.
 
-Security review is exactly where frontier models could be extremely useful. Modern SaaS applications are full of subtle risks: authentication flows, authorization checks, API boundaries, background jobs, document processing, file uploads, secrets handling, logging, tenant separation, dependency issues. A strong model with long context and good code understanding should be a very good reviewer.
+Security review is one of the jobs where a strong model should help. A SaaS application has authentication, authorization, APIs, background jobs, file uploads, secrets, logs, tenant isolation, and dependencies to inspect.
 
-Yet the more capable the model becomes at cyber reasoning, the more likely it is to be restricted from doing the security work defenders actually need.
+My first ordinary defensive review hit the safety boundary immediately, and a second tightly constrained prompt did the same.
 
-My first ordinary defensive review hit that boundary immediately.
+There is also an evaluation problem. If I select Fable 5 and Opus 4.8 answers, I am no longer testing Fable 5. I need to know whether the fallback was partial or complete and why the original request was refused.
 
-There is also a product evaluation problem here. If I select Fable 5 but the answer comes from Opus 4.8, what am I evaluating? Did Fable 5 fail? Did Opus solve it? Was the fallback partial or complete? Was the original prompt refused because of a specific security concern, or just because the classifier saw enough cyber-related language?
+Engineering teams need to know which model produced the answer and why the requested model refused.
 
-For engineering and security workflows, the team needs to know which model produced the answer and why the requested model refused.
+I want providers to expose:
 
-I would like AI providers to make this more transparent:
-
-- show clearly which model actually produced the answer,
+- show which model produced the answer,
 - expose the refusal category in the UI as well as the API,
-- distinguish defensive security review from exploit development more precisely,
+- better separation between defensive review and exploit development,
 - allow a constrained defensive review mode for legitimate code owners,
-- keep the safety boundary, but make the workflow auditable.
+- an audit trail for the safety decision.
 
-These safeguards have a legitimate purpose. If models like Fable 5 or Mythos-level systems can find and reason about serious vulnerabilities, unrestricted access would create obvious risks. The current defensive workflow still needs work.
+The safeguards have a legitimate purpose. Unrestricted access to strong cyber reasoning creates risk. The defensive workflow still needs work.
 
-If a SaaS team cannot ask for a defensive review of its own application, even with explicit instructions not to generate exploit code, then we have a usability problem. And probably a trust problem too.
+If a SaaS team cannot review its own application after explicitly banning exploit guidance, the tool is hard to trust for security work.
 
-Developers need a constrained defensive mode with an auditable safety boundary. Until providers expose the refusal reason and the model that produced the fallback answer, teams cannot evaluate these tools reliably for security work.
+I want a constrained defensive mode with an auditable safety boundary. At minimum, the product should expose the refusal reason and the model that produced the fallback answer.
 
 ## Sources
 

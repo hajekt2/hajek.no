@@ -9,19 +9,19 @@ tags:
   - ai
   - agents
   - software
-description: "A small bug fix felt like an early glimpse of software that can help correct itself, with a human still in the loop."
+description: "OpenClaw helped investigate and fix its own bug. The agent shortened the path to a reviewed patch, while humans kept control."
 ---
 
-I found a bug in OpenClaw. Then I asked OpenClaw to investigate it. Then I used it to help produce the fix and PR. The PR got merged by Peter, and I am fairly sure an agent helped on that side too.
+I found a bug in OpenClaw and asked OpenClaw to investigate it. It helped produce the fix and pull request. Peter merged it, and I am fairly sure an agent helped on that side too.
 
-No fireworks. No giant benchmark. Just a bug, an investigation, a fix, and a merge.
+It was one bug, one investigation, one fix, and a merge.
 
 Normally, software is passive. It can fail, log, crash, or maybe show an error message. Then a human has to collect context, search the codebase, form a theory, patch the thing, and shepherd the fix through review.
 
-With an agent in the loop, the software stack starts to participate in its own repair. Not autonomously in the scary sense. More like a competent junior developer who can read logs, inspect files, run tests, and keep track of what changed.
+With an agent in the loop, the software can help with its own repair. It behaves more like a junior developer that can read logs, inspect files, run tests, and track the changes.
 
-The human still matters. A lot. The human decides what is actually wrong, what risk is acceptable, and whether the fix is good enough. But the agent lowers the cost of getting from "something is off" to "here is a concrete patch with evidence".
+The human decides what is wrong, what risk is acceptable, and whether the fix is good enough. The agent lowers the cost of getting from "something is off" to a patch with evidence.
 
-Self-healing software is usually discussed as if systems will magically repair themselves in production. I do not buy that as a default. Too many risks, too much context, too many ways to make things worse.
+I do not buy the usual idea of systems repairing themselves in production. There is too much context and too many ways to make the incident worse.
 
-Software that helps investigate and correct itself with a human in control is already useful. The agent shortened the path from a reported problem to a reviewed patch without taking ownership of the decision to merge it.
+Software that helps investigate and correct itself while a human stays in control is useful now. OpenClaw shortened the path from a reported problem to a reviewed patch without owning the merge decision.

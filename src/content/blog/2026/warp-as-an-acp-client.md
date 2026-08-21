@@ -10,25 +10,25 @@ tags:
   - software-development
   - warp
   - acp
-description: "An experimental prototype of Warp running as an Agent Client Protocol client, separating the terminal UX from the user-owned agent runtime."
+description: "I built a prototype of Warp as an ACP client, with Warp handling the terminal UI and a local process owning the agent runtime."
 ---
 
-I spent some time experimenting with Warp's newly open-source codebase and built a small prototype of Warp running as an Agent Client Protocol, or ACP, client.
+I built a prototype of Warp running as an Agent Client Protocol, or ACP, client.
 
-The basic idea is simple:
+The idea is:
 
-Warp already has many of the things I want from an agentic terminal or ADE: a good conversation UI, terminal integration, command approvals, diffs, history, and a native developer workflow.
+Warp already has the parts I want from an agentic terminal: conversation, terminal integration, command approvals, diffs, history, and a native developer workflow.
 
 The agent runtime does not have to be owned by Warp itself.
 
-In this prototype, Warp can connect to a local ACP-compatible agent runtime, such as OpenCode or a Codex-style ACP wrapper. Warp acts as the client UI, while the external agent process handles the actual agent logic.
+In the prototype, Warp connects to a local ACP-compatible runtime such as OpenCode or a Codex-style ACP wrapper. Warp is the client UI, while the external process runs the agent.
 
 <video controls preload="metadata" playsinline style="width: 100%; border-radius: 0.5rem; margin: 2rem 0;">
   <source src="/videos/warp-acp-demo.mp4" type="video/mp4" />
   <a href="/videos/warp-acp-demo.mp4">Watch the demo video</a>
 </video>
 
-That means the agent runtime can own things like:
+The agent runtime owns:
 
 - model access
 - provider subscriptions
@@ -37,15 +37,15 @@ That means the agent runtime can own things like:
 - MCP and tool setup
 - provider-specific behavior
 
-Warp provides the terminal-native interface around the agent.
+Warp provides the terminal interface.
 
 ## Separating the interface and runtime
 
-A lot of current AI developer tooling is tightly coupled to one hosted backend. That is convenient, and for many users it is probably the right default.
+Many AI developer tools are coupled to one hosted backend. That is convenient and probably the right default for many users.
 
-For technical users, teams, and companies, this coupling can limit provider choice and control over credentials or tools.
+For teams and technical users, it limits provider choice and control of credentials and tools.
 
-There are good reasons to separate:
+I want to separate:
 
 - the UX layer
 - the agent runtime
@@ -53,13 +53,13 @@ There are good reasons to separate:
 - the tool and permission boundary
 - local/private configuration such as credentials and MCP servers
 
-If the UI and the runtime are separate, users can choose the frontend experience they like without being locked into one specific backend, provider subscription, or hosted agent implementation.
+With the UI and runtime separated, users can choose the frontend without being locked into one backend, subscription, or hosted agent.
 
-ACP defines the protocol boundary between the agent client and runtime.
+ACP is the protocol boundary between them.
 
 ## What the prototype does
 
-In my fork, Warp can launch and talk to configured ACP agents over local stdio using JSON-RPC.
+My fork launches configured ACP agents over local stdio and talks to them with JSON-RPC.
 
 The prototype includes:
 
@@ -70,24 +70,22 @@ The prototype includes:
 - early plumbing for explicit MCP server forwarding
 - protocol-level smoke tests with OpenCode ACP and a Codex ACP wrapper
 
-The prototype uses ACP as a protocol path rather than scraping terminal scrollback. Warp renders the streamed response into its existing agent history.
+The prototype uses ACP instead of scraping terminal scrollback. Warp renders the streamed response in its existing agent history.
 
 ## Security and ownership
 
-The prototype is intentionally local-first.
+The prototype is local-first. ACP agents run as local processes, and model credentials stay with the configured runtime. MCP forwarding should use an explicit allowlist instead of exposing every tool server to every agent.
 
-ACP agents are launched as local processes. Model credentials stay with the configured agent runtime, not inside Warp. MCP forwarding should be explicit and allowlist-based, rather than automatically exposing every configured tool server to every agent.
+Warp's existing approval model should still gate file, terminal, diff, and permission requests.
 
-File, terminal, diff, and permission requests should remain gated by Warp's existing approval model.
-
-Users need to be able to see which component owns execution, credentials, tools, and approvals.
+The UI needs to show which component owns execution, credentials, tools, and approvals.
 
 ## Status
 
-This is only an experimental fork/prototype, not an official Warp release and not affiliated with or endorsed by Warp.
+This is an experimental fork, not an official Warp release and not endorsed by Warp.
 
-The prototype runs local ACP-compatible agents and streams their output into Warp's agent history. The next step is to find out whether the Warp open-source community wants ACP support to use this architecture.
+The prototype runs local ACP agents and streams their output into Warp's history. The next question is whether the Warp open-source community wants ACP support built this way.
 
 Repository: <https://github.com/hajekt2/warp>
 
-The fork demonstrates that Warp can provide the terminal interface while a local, replaceable runtime owns the agent logic and model credentials.
+The fork proves that Warp can provide the terminal interface while a local, replaceable runtime owns the agent and its credentials.

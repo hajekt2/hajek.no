@@ -9,12 +9,12 @@ tags:
   - security
   - automation
   - data-migration
-description: "I used AI for semantic classification of password manager metadata, while keeping secrets out of the model and rehydrating deterministically by ID."
+description: "I used AI to classify 1,388 password-manager entries. Secrets stayed local, and deterministic code applied reviewed changes by ID."
 ---
 
 I reorganized 1,388 items in my password manager using AI, without exposing secrets to the model.
 
-That last part is the only reason the experiment was acceptable.
+Keeping the secrets local was the condition for doing it at all.
 
 The basic pattern was:
 
@@ -24,9 +24,9 @@ sanitize metadata -> classify with AI -> review uncertain cases -> rehydrate by 
 
 The model never needed the passwords. It did not need TOTP secrets, recovery codes, notes, or anything sensitive. For classification, metadata was enough: item titles, URLs, rough category hints, and stable IDs.
 
-The stable ID is important. AI can help decide that "github.com" belongs under Development or that a bank login belongs under Finance, but I do not want the model producing the final vault. I want code to do that part. Deterministic code. Boring code. Code that maps a reviewed classification back to the original item by ID.
+The stable ID is important. AI can suggest that `github.com` belongs under Development or that a bank login belongs under Finance. I do not want it producing the final vault. Deterministic code maps each reviewed classification back to the original item by ID.
 
-That separation made the workflow feel safe enough:
+The separation was:
 
 1. split data first,
 2. send only sanitized metadata for classification,
@@ -34,8 +34,6 @@ That separation made the workflow feel safe enough:
 4. review uncertain results,
 5. merge back deterministically.
 
-The result was useful. Uncertain classifications dropped from 891 to 485, a 45.6% reduction. More importantly, the process was reproducible. I could inspect what the model suggested before anything touched the real data.
+Uncertain classifications dropped from 891 to 485, a 45.6% reduction. I could inspect every suggestion before anything touched the real data.
 
-This is the pattern I trust for sensitive AI work.
-
-I trust AI with the semantic mapping and deterministic code with the final writes. The reviewed classification remains useful without giving the model control over the real vault.
+This is the pattern I trust for sensitive AI work: AI handles the semantic mapping, and deterministic code handles the final writes. The model never gets control of the real vault.
