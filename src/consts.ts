@@ -33,7 +33,7 @@ export const SITE: Site = {
   website: "https://hajek.no/",
   author: "Tomas Hajek",
   profile: "https://hajek.no/about",
-  desc: "CCM architecture, DocEngine, PDF/UA post-composition, high-performance document composition, AI tools, and pragmatic engineering from Norway.",
+  desc: "Tomas Hajek designs document systems, accessible PDF workflows, and AI tools for Customer Communication Management from Norway.",
   title: "Tomas Hajek",
   ogImage: "og.png",
   lightAndDarkMode: true,

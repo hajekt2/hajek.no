@@ -9,28 +9,14 @@ tags:
   - agents
   - interface
   - product
-description: "Chat is useful, but the next layer of AI interfaces may be dynamic workspaces that adapt to the task."
+description: "An AI interface should present a table, chart, dashboard, or task board when that is the clearest way to inspect the work."
 ---
 
-The next AI interface may not be a chatbot.
-
-Most AI agents today still live inside fixed surfaces.
-
-A chat window.
-
-A terminal.
-
-A messaging app.
-
-A web UI with buttons and screens someone designed in advance.
+Most AI agents still live inside a chat window, terminal, messaging app, or fixed web interface.
 
 They can answer questions, call tools, edit files, run commands, and generate content.
 
-But the interface itself usually stays the same.
-
-I think that will change.
-
-The more interesting future is not just AI operating inside existing software. It is AI helping create the interface needed for the task in real time.
+The interface usually stays the same even when the task changes completely. I think agents should be able to create the view needed for the current work.
 
 Ask for a summary, and you get text.
 
@@ -40,9 +26,7 @@ Ask to monitor something, and it creates a dashboard.
 
 Ask to organize a project, and it builds a small task board, note view, or custom workspace.
 
-Not as a separate app someone had to design upfront.
-
-As part of the interaction itself.
+Those views can be part of the interaction instead of separate applications designed in advance.
 
 We are used to this model:
 
@@ -50,24 +34,14 @@ We are used to this model:
 fixed app UI + chatbot bolted on top
 ```
 
-But the next model may be closer to:
+Another model is:
 
 ```text
 agent + dynamic workspace + generated widgets + persistent state + rollback
 ```
 
-Instead of forcing every task through the same chat box, the agent can shape the working environment around what the user is trying to do.
-
-Of course, this creates new problems.
+The agent can shape the working environment around the task instead of forcing every result through the same chat box.
 
 If software can change itself, it can also break itself. So undo, audit history, permissions, sandboxing, and recovery modes become much more important.
 
-But the direction feels right.
-
-Chat is useful.
-
-But chat is not the final interface.
-
-The next layer is probably dynamic visual workspaces where AI does not just answer questions or operate apps.
-
-It helps build the workspace with you.
+Chat still works well for commands and discussion. A generated workspace should handle the table, chart, state, and controls that would otherwise be squeezed into prose.

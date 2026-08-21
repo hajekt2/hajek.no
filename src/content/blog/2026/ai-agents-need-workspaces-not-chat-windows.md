@@ -1,5 +1,5 @@
 ---
-title: "AI agents need workspaces, not just chat windows"
+title: "Designing workspaces for AI agents"
 author: "Tomas Hajek"
 pubDatetime: 2026-04-28T05:56:47+02:00
 featured: false
@@ -9,7 +9,7 @@ tags:
   - agents
   - product
   - interface
-description: "Chat is a useful command layer for AI agents, but it is probably not the final interface. Real work needs state, structure, and rollback."
+description: "Chat works well for commands, but longer agent tasks also need persistent state, purpose-built views, audit history, and rollback."
 ---
 
 Chat is useful. I use it every day. But I do not think chat is the final interface for AI agents.
@@ -20,26 +20,18 @@ But real work usually wants more than a transcript.
 
 If I ask an agent to compare data, I do not want a paragraph pretending to be a spreadsheet. I want a table, a chart, or a small inspection tool. If I ask it to monitor something, I want a dashboard. If I ask it to organize a project, I probably need notes, cards, timelines, files, and a way to see what changed.
 
-The interesting product shape is closer to this:
+The product shape I want is closer to this:
 
 ```text
 agent + dynamic workspace + generated widgets + persistent state + rollback
 ```
 
-Less "chatbot bolted onto an app". More "software that shapes itself around the task".
+The software should shape the working view around the task instead of forcing every result back into a transcript.
 
-That sounds a bit grand, so let me make it boring again. A workspace could be as simple as an agent creating a temporary table to classify 200 items, keeping the user's decisions, then turning that into a repeatable script. Or creating a small review panel for a document migration. Or producing a checklist that is connected to actual files, logs, and commands instead of being dead text.
+A workspace could be as simple as an agent creating a temporary table to classify 200 items, keeping the user's decisions, then turning the result into a repeatable script. It could also create a review panel for a document migration or connect a checklist to the files, logs, and commands that prove each item is done.
 
 The UI becomes part of the conversation.
 
-That also creates new problems. If software can change itself, it can also break itself. So undo, audit history, permissions, sandboxing, and recovery modes become core features. Not nice extras. Core features.
+Software that changes its own working environment can also break it. Undo, audit history, permissions, sandboxing, and recovery therefore belong in the design from the start.
 
-This is why I find "dynamic workspace" more interesting than "better chatbot". Chat is a good command layer, but work has shape. It has state. It has artifacts. It needs memory and structure.
-
-The future may be less:
-
-> chatbot inside an app
-
-and more:
-
-> AI building the working environment with you
+Chat remains a good command layer. The workspace should hold the state, artifacts, decisions, and recovery controls that a long-running task produces.

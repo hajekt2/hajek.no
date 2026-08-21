@@ -1,5 +1,5 @@
 ---
-title: "When the best AI security reviewer refuses to review security"
+title: "Claude Fable 5 refused my defensive security review"
 author: "Tomas Hajek"
 pubDatetime: 2026-06-11T15:30:00+02:00
 featured: false
@@ -34,15 +34,11 @@ And it still triggered the failsafe.
 
 ![Claude Fable 5 safety fallback message](/assets/img/2026/fable-5-safety-fallback-opus-48.png)
 
-That is the interesting part.
-
 According to Anthropic's own documentation, Claude Fable 5 includes additional safety classifiers. One of the categories is cyber. Anthropic also explicitly says that benign cybersecurity work can trigger these safeguards. When that happens, the request is not treated as a normal error. It is a refusal, and the recommended fallback is another Claude model, such as Opus 4.8.
 
-So this is not just a random glitch. It looks like the product behaving as designed.
+The fallback appears to be the product behaving as documented rather than a random glitch.
 
-And I understand why.
-
-The same model capability that helps a developer find insecure authorization logic, weak tenant isolation, broken session handling, or dangerous file-processing paths could also help an attacker. The line between "defensive review" and "offensive enablement" is not always obvious from a prompt. Especially not when the task involves a real codebase and real security reasoning.
+I understand why. The same model capability that helps a developer find insecure authorization logic, weak tenant isolation, broken session handling, or dangerous file-processing paths could also help an attacker. The line between "defensive review" and "offensive enablement" is not always obvious from a prompt, especially when the task involves a real codebase and real security reasoning.
 
 But from a software team's point of view, this creates an awkward problem.
 
@@ -50,33 +46,25 @@ Security review is exactly where frontier models could be extremely useful. Mode
 
 Yet the more capable the model becomes at cyber reasoning, the more likely it is to be restricted from doing the security work defenders actually need.
 
-That tension is not theoretical. I hit it immediately.
+My first ordinary defensive review hit that boundary immediately.
 
 There is also a product evaluation problem here. If I select Fable 5 but the answer comes from Opus 4.8, what am I evaluating? Did Fable 5 fail? Did Opus solve it? Was the fallback partial or complete? Was the original prompt refused because of a specific security concern, or just because the classifier saw enough cyber-related language?
 
-For casual use, that may be acceptable. For engineering and security workflows, it matters.
+For engineering and security workflows, the team needs to know which model produced the answer and why the requested model refused.
 
 I would like AI providers to make this more transparent:
 
 - show clearly which model actually produced the answer,
-- expose the refusal category in the UI, not only in the API,
+- expose the refusal category in the UI as well as the API,
 - distinguish defensive security review from exploit development more precisely,
 - allow a constrained defensive review mode for legitimate code owners,
 - keep the safety boundary, but make the workflow auditable.
 
-I am not arguing that Anthropic should remove these safeguards. Quite the opposite. If models like Fable 5 or Mythos-level systems can genuinely find and reason about serious vulnerabilities, then unrestricted access would be irresponsible.
-
-But the current experience is also not good enough.
+These safeguards have a legitimate purpose. If models like Fable 5 or Mythos-level systems can find and reason about serious vulnerabilities, unrestricted access would create obvious risks. The current defensive workflow still needs work.
 
 If a SaaS team cannot ask for a defensive review of its own application, even with explicit instructions not to generate exploit code, then we have a usability problem. And probably a trust problem too.
 
-The future of AI-assisted security cannot be only "block cyber prompts and fall back silently." Developers need tools that understand intent, preserve safety, and still help defenders move faster.
-
-Right now, we are somewhere in the messy middle.
-
-The model may be powerful enough to help secure software.
-
-But the safety layer is not yet precise enough to reliably let it.
+Developers need a constrained defensive mode with an auditable safety boundary. Until providers expose the refusal reason and the model that produced the fallback answer, teams cannot evaluate these tools reliably for security work.
 
 ## Sources
 

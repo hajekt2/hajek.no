@@ -23,8 +23,6 @@ For readers outside Norway: Gjensidige is one of the large Nordic insurance comp
 
 I have worked with Gjensidige on and off for many years, across document production, customer communication, integrations, batch processing, online document generation, print flows, email, SMS, archives, and the slow, careful modernization of systems that most people never see.
 
-That last part matters.
-
 Customer communication systems are usually invisible when they work. A customer receives the right letter, with the right data, in the right language, through the right channel, at the right time. Nobody celebrates it. Nobody says, "Great batch architecture today."
 
 But when it fails, everybody notices.
@@ -33,7 +31,7 @@ A wrong amount in a letter. A missing document. A PDF that cannot be read proper
 
 That is the reality of CCM work. It looks boring from far away, but it sits very close to trust.
 
-## The real work is not just templates
+## The work behind the templates
 
 A lot of people think document systems are mostly about designing templates.
 
@@ -43,11 +41,7 @@ Underneath you have business rules, customer data, product logic, legal text, la
 
 At Gjensidige, I worked with many of those layers over the years. Some projects were about moving or modernizing document production. Some were about building infrastructure around HP/OpenText Exstream. Some were about high-volume batch output. Some were about online generation and local print. Some were about email and SMS communication, including bounce handling.
 
-The common thread was always the same: make customer communication reliable enough that the business can trust it.
-
-Not flashy.
-
-Important.
+The common requirement was reliability. The business had to trust the customer communication produced by the system.
 
 ## Long-term customers are different
 
@@ -57,7 +51,7 @@ You stop seeing only the task in front of you. You start understanding why the s
 
 That kind of knowledge is hard to buy quickly.
 
-It is also why I like the XPER model. We are not just dropping in with generic consultants. In the best cases, we become part of the customer's technical memory. We know the systems, the people, the history, and the consequences of changing the wrong thing too casually.
+It is also why I like the XPER model. In the best cases, we become part of the customer's technical memory. We know the systems, the people, the history, and the consequences of changing the wrong thing too casually.
 
 Gjensidige has also been a good customer because they take the document domain seriously. The recent XPER article about the cooperation mentions trust, openness, and specialist competence. That sounds like normal company-language, but in this case I think it is accurate.
 
@@ -77,7 +71,7 @@ That is especially important in insurance, banking, healthcare, pensions, and pu
 
 Making them accessible is not cosmetic work. It is part of the communication system doing its job.
 
-## Why this still matters in the AI era
+## AI around controlled communication
 
 I keep coming back to this because AI is changing the surrounding work very quickly.
 
@@ -89,16 +83,8 @@ If anything, it makes the boring foundations more important.
 
 The output still has to be correct. The audit trail still matters. The business still owns the message. Legal text cannot be casually improvised. Customers still need consistent, accessible, and trustworthy communication.
 
-So the future is probably not "AI replaces CCM".
-
-The useful future is AI around CCM: helping teams understand, improve, test, migrate, and operate these systems with more confidence.
+AI is most useful around CCM, where it can help teams understand, improve, test, migrate, and operate these systems.
 
 That is why the Gjensidige work has stayed interesting for me. It combines old enterprise reality with new problems that are becoming more important: accessibility, modernization, automation, and now AI-assisted quality work.
 
-Underneath all of it is a simple principle.
-
-Customer communication is not just output.
-
-It is part of the relationship between a company and its customers.
-
-And that deserves proper engineering.
+The work has stayed interesting because a document system is never isolated from the relationship between a company and its customers. A correct, accessible document preserves that relationship. A wrong one damages it.

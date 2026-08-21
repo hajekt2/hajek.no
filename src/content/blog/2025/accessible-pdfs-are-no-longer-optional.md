@@ -9,51 +9,27 @@ tags:
   - pdf
   - ccm
   - docengine
-description: "Digital accessibility is becoming a practical document problem for organizations that rely on PDFs, letters, forms, and customer communication."
+description: "PDF accessibility has to work across templates, production pipelines, validation, exceptions, and archives for every document produced."
 ---
 
-Accessible PDFs are no longer a nice-to-have.
+For many organizations, a PDF is the final interface between a system and a person. It may contain an insurance decision, a pension statement, an invoice, a medical letter, or instructions from a public service.
 
-For many organizations, documents are still the main interface with customers, citizens, patients, and employees. Letters, forms, decisions, statements, confirmations, policies, reports, and archives all carry important information.
+A PDF can look correct on screen and still be unusable with assistive technology. The visual layout does not tell a screen reader which text is a heading, how a table is structured, what order to read the page in, or whether an image carries information.
 
-If those documents cannot be read or understood by the people who need them, the service is not really accessible.
+The European Accessibility Act has made the problem harder to postpone. The engineering problem, however, is larger than compliance. Organizations need to produce accessible documents repeatedly, across many templates and large batch runs.
 
-The European Accessibility Act has made this more urgent, but I do not think the real point is only compliance. Universal document accessibility is also about trust.
+Checking one PDF by hand proves very little about the next thousand.
 
-People trust organizations less when important information is hard to read, impossible to navigate, or locked inside a visual PDF that assistive technology cannot interpret properly.
+## Accessibility belongs in production
 
-This matters especially in areas like public services, healthcare, insurance, banking, and pensions. The documents are not decoration. They explain rights, obligations, money, health, and decisions that affect real lives.
+Most document environments already have years of accumulated machinery: composition systems, templates, business rules, print streams, archives, legacy integrations, and manual quality checks. Replacing all of it is rarely realistic.
 
-The difficult part is scale.
+Accessibility therefore has to fit into the existing production chain. Teams need to control semantic structure, reading order, alternative text, document language, and validation. They also need to record exceptions and know which output entered the archive.
 
-Many companies have large document archives and complex production chains. They use composition systems, templates, batch jobs, print streams, PDFs, legacy integrations, and manual quality checks. Rebuilding everything from scratch is rarely realistic.
+The process should answer concrete questions. Did the template produce the expected structure? Did the document pass a standards-based validator? Which checks failed? Can the team reproduce the result after the next template change?
 
-That is why I find this problem interesting from a CCM perspective.
+## Where DocEngine fits
 
-The useful question is not only:
+[XPER DocEngine](https://xperconsulting.no/docengine) works on this production problem. It can analyze existing PDFs, add accessibility structure, regenerate the document, and validate the output. Human review still matters for wording, meaningful alternative text, and cases where the correct structure requires judgment.
 
-> Can we create one accessible PDF?
-
-It is:
-
-> Can we make accessibility part of the document production workflow?
-
-That means looking at:
-
-- template quality,
-- semantic structure,
-- reading order,
-- alternative text,
-- language and clarity,
-- validation,
-- exception handling,
-- reporting,
-- archive strategy.
-
-With [XPER DocEngine](https://xperconsulting.no/docengine), the goal is to make this kind of work more practical. Not by pretending accessibility is automatic magic, but by reducing the amount of manual work and making it easier to inspect, improve, and deliver accessible documents at scale.
-
-This is where CCM and accessibility meet.
-
-A document is not accessible because someone checked a box at the end. It is accessible because the whole production chain respects the structure and meaning of the information.
-
-That is the shift many organizations need to make.
+The aim is to move accessibility checks closer to document production, where teams can repeat them and act on failures before inaccessible files reach customers or archives.

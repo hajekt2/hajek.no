@@ -1,5 +1,5 @@
 ---
-title: "AI agent reliability is operations, not prompting"
+title: "Reliable AI agents need operational proof"
 author: "Tomas Hajek"
 pubDatetime: 2026-03-02T09:30:26+01:00
 featured: false
@@ -9,18 +9,14 @@ tags:
   - agents
   - operations
   - reliability
-description: "Most agent failures are not solved by prettier prompts. They are solved by verification and institutional learning."
+description: "An agent should prove what it completed, report what failed, and preserve the lesson so the same failure does not return next week."
 ---
 
-Most AI agent failures I see come from two missing rules.
-
-First: never accept "done" without proof.
-
-Second: every mistake should become a permanent rule.
+Most AI agent failures I see trace back to two missing rules. Never accept "done" without proof, and turn repeated mistakes into permanent instructions.
 
 That sounds obvious, but many agent setups still behave like a very enthusiastic intern with no checklist. The agent says it finished. Nobody checks the output count. Nobody checks the failed items. Nobody checks whether the files exist. Nobody records why it failed last time. Then everyone is surprised when the same failure appears again next week.
 
-The fix is not a magic prompt. It is operations.
+No prompt can replace those operational checks.
 
 For completion, I want boring evidence:
 
@@ -34,10 +30,8 @@ For completion, I want boring evidence:
 
 If the task was to convert 200 files and 197 succeeded, that is not "done". It is "197 succeeded, 3 failed, here are the failed paths, here is the next action".
 
-The second rule matters even more. Agents need institutional learning. If a command fails because a tool has a weird flag, write it down. If a deployment breaks because DNS takes time, write it down. If the user corrects a preference, write it down. Otherwise the system has no memory. It is just improvising forever.
+Agents also need institutional learning. If a command fails because a tool has a weird flag, record it. If a deployment check runs before DNS settles, record it. If the user corrects a preference, update the instructions. Without that memory, the agent improvises through the same failure again.
 
-This is where agent reliability starts to look less like prompt engineering and more like running a small operations team.
+At that point, agent reliability starts to resemble the work of running a small operations team.
 
-Checklists. Runbooks. Logs. Postmortems. Durable rules. Clear definitions of done.
-
-Prompting still matters, but it is not the foundation. The foundation is whether the agent can prove what it did and avoid repeating the same mistake.
+That makes checklists, runbooks, logs, postmortems, and clear definitions of done part of the agent system. Prompting still matters, but reliability depends on whether the agent can prove what it did and avoid repeating the same mistake.

@@ -38,6 +38,4 @@ The result was useful. Uncertain classifications dropped from 891 to 485, a 45.6
 
 This is the pattern I trust for sensitive AI work.
 
-Use AI for semantic mapping. Use code for safety, determinism, and final writes.
-
-If you mix those responsibilities, you get a clever demo and a security headache. If you separate them, you get something that can actually be used.
+I trust AI with the semantic mapping and deterministic code with the final writes. The reviewed classification remains useful without giving the model control over the real vault.

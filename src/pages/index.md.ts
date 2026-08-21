@@ -3,13 +3,13 @@ import type { APIRoute } from "astro";
 export const GET: APIRoute = async () => {
   const markdownContent = `# Tomas Hajek (@hajekt21)
 
-CCM architecture, document systems, agent-native composition, AI tools, and pragmatic engineering from Norway.
+I design and build systems that generate, transform, and validate customer documents. My work covers OpenText Exstream, accessible PDF/UA output, and AI tools for document engineering.
 
 Co-founder, managing consultant, and lead architect at [Xper Consulting AS](https://xperconsulting.no), where we combine consulting with DocEngine product development.
 
-DocEngine focuses on PDF/UA post-composition for existing PDFs and a high-performance composition engine for accessible PDF and HTML output.
+DocEngine adds accessibility structure to existing PDFs, validates the result, and generates accessible PDF and HTML from templates and structured data.
 
-Building [CCMForge](https://ccmforge.com): an agent-native document engineering platform for modern CCM work.
+I am also building [CCMForge](https://ccmforge.com), which brings template analysis, validation, publishing, HTML/PDF composition, and Exstream-focused assistance into one workflow.
 
 ## Navigation
 

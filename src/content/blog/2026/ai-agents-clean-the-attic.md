@@ -12,7 +12,7 @@ tags:
 description: "Some of the best agent work may be the boring cleanup: stale bugs, duplicate issues, old PRs, and half-finished ideas."
 ---
 
-AI agents are not just writing code anymore. They are starting to clean the attic.
+AI agents are starting to clean the attic of software projects.
 
 That sounds less exciting than "AI builds an app from scratch", but I think it may matter more. A lot of software work is not greenfield creation. It is deciding what still matters.
 
@@ -32,6 +32,4 @@ A good agent can read the old issue, inspect the current code, search related co
 
 The important part is evidence. I do not want an agent randomly closing tickets because it sounds confident. I want the boring proof: files checked, commands run, current behavior observed, links found, decision recorded.
 
-This is where agents can make software teams feel lighter. Not by replacing the hard decisions, but by dragging forgotten work back into a state where a human can make a quick call.
-
-The attic still needs an owner. But it does not have to stay full of dust forever.
+An agent can bring forgotten work back to a state where a human can make a quick decision. The useful output is the evidence behind that decision, not the number of tickets the agent managed to close.

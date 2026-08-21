@@ -11,12 +11,12 @@ tags:
   - ai-agents
   - product
   - ua1
-description: "UA1.dev is a small PDF/UA-1 validation service with a human-friendly web UI, deterministic API, and agent-ready automation path."
+description: "UA1.dev checks PDFs against PDF/UA-1 through a web interface or a JSON API that CI pipelines, scripts, and agents can call."
 ---
 
 I launched [UA1.dev](https://ua1.dev), a PDF/UA-1 validator for humans, CI pipelines, and AI agents.
 
-It is a small tool, but it sits in a problem space I care a lot about: document accessibility in real production workflows.
+I built it to make standards-based PDF accessibility checks available in both manual and automated workflows.
 
 ## Why PDF/UA validation matters
 
@@ -26,9 +26,7 @@ If a PDF cannot be read properly with assistive technology, the service behind i
 
 PDF/UA-1, formally ISO 14289-1, is one of the practical standards used to define accessible PDF structure. It is not the whole accessibility story, but it gives teams a concrete baseline to validate against.
 
-The problem is that validation is still too often treated as a manual end-of-process checkbox.
-
-That does not scale.
+Validation is still often treated as a manual end-of-process checkbox, which does not scale across large document sets.
 
 ## What UA1.dev does
 
@@ -40,15 +38,22 @@ That does not scale.
 
 The web UI is deliberately simple: drop a PDF, get a verdict, inspect findings, and download the JSON report.
 
-The API is where the project becomes more interesting. It is designed to be deterministic and automation-friendly: stable JSON, compact response mode, explicit error codes, request IDs, and rate-limit headers.
+The API returns stable JSON, supports a compact response mode, and exposes explicit error codes, request IDs, and rate-limit headers.
 
-That makes it usable not only from a browser, but also from CI jobs, coding agents, document pipelines, and internal tools.
+A CI job or agent can run the same check with one request:
+
+```bash
+curl -sS -X POST "https://api.ua1.dev/api/validate?format=compact" \
+  -F "file=@document.pdf"
+```
+
+The caller can read the verdict from the compact response and stop a release when validation fails.
 
 ## Why I made it agent-ready
 
 AI agents are becoming useful for software delivery and operations, but they need reliable tools around them. A vague natural-language answer is not enough when you want to fail a build, check a generated document, or decide whether a document pipeline can continue.
 
-For agents, the ideal tool is boring in the best way:
+For agents, the useful properties are operational:
 
 - predictable input,
 - predictable output,
@@ -56,7 +61,7 @@ For agents, the ideal tool is boring in the best way:
 - clear limits,
 - easy verification.
 
-That is the direction for UA1.dev. The agent should not guess whether a PDF passed. It should call the validator, read structured output, and act on the result.
+An agent should call the validator, read structured output, and act on the result instead of guessing whether a PDF passed.
 
 ## The CCM connection
 
@@ -64,7 +69,7 @@ My background is Customer Communication Management: document composition, transf
 
 In that world, accessibility cannot be solved only by checking one final PDF by hand. Real organizations have templates, batch jobs, composition engines, archives, print streams, integrations, and release processes. They need repeatable validation close to where documents are created and changed.
 
-That is why I see UA1.dev as both a useful standalone tool and a small building block in a larger direction: making document quality and accessibility part of the production workflow.
+UA1.dev works as a standalone check and as one validation step inside a larger document production workflow.
 
 ## Current state
 
@@ -77,9 +82,9 @@ Useful links:
 - [UA1 Validator Agent on ClawHub](https://clawhub.com/skills/ua1-validator-agent)
 - [Public agent skill repository](https://github.com/hajekt2/ua1-validator-agent-skill)
 
-The service is intentionally narrow for now. That is a feature, not a limitation. I would rather have one clear tool that does one useful thing reliably than a broad platform-shaped demo that nobody can trust.
+The service is intentionally narrow for now. I would rather maintain one validator with a clear contract than add unrelated features before the basic workflow is dependable.
 
-## What comes next
+## Planned improvements
 
 The next useful improvements are probably:
 
@@ -90,10 +95,4 @@ The next useful improvements are probably:
 - better explanations of common PDF/UA failures,
 - eventually, connections to remediation and post-composition accessibility workflows.
 
-The bigger long-term question is not just “can this PDF pass validation?”
-
-It is:
-
-> Can we make accessible document production easier to automate, verify, and operate?
-
-That is the problem I am interested in.
+The longer-term work is to connect validation with remediation and document production without weakening the clear pass, fail, and error contract that automation depends on.

@@ -20,9 +20,7 @@ This was my first OpenClaw skill, and it scratched a very specific itch. Sometim
 
 The setup is deliberately local. I like that. A phone you control. A gateway you can reach over Tailscale. No need to route every small automation through a cloud service if the local path is enough.
 
-The interesting part is not just "agent sends text". That is the obvious demo.
-
-The more useful version is workflow glue:
+Sending a text is the obvious demo. The skill becomes useful as workflow glue:
 
 - notify someone when a local job finishes,
 - receive a short reply and continue a workflow,
@@ -32,4 +30,4 @@ The more useful version is workflow glue:
 
 Of course, messaging tools need restraint. An agent with SMS access should not spray messages around because it feels helpful. Permissions, explicit user intent, and logging matter here.
 
-But as a capability, I like it. Local agent. Local phone. Works through Tailscale. Boring in the right way.
+I like the local boundary: an agent I control, a phone I control, and a connection through Tailscale. The setup does one ordinary job without requiring another cloud service.

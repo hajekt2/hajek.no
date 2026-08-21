@@ -23,7 +23,7 @@ The workflow is simple:
 Grok on X -> capture conversation data -> Markdown -> Obsidian
 ```
 
-From there, my local private agent can use the knowledge directly. Not through a platform memory feature I cannot inspect. Not through a black box that may or may not remember the right thing. Just files. Markdown. Local search. Git if I want it.
+From there, my local private agent can use the knowledge through files I can inspect, search, version with Git, or delete myself.
 
 The first run moved 1,174 conversations into local/private notes.
 
@@ -45,4 +45,4 @@ Obsidian is not magic here. Markdown is the important part. Obsidian is just a g
 
 The more I use AI tools, the more I think data portability should be treated as a basic feature. If a system helps me think, build, and decide, I should be able to take that history with me.
 
-Platform memory is convenient. Owning your memory is better.
+The Markdown archive gives me a memory layer that still works if I change the interface, agent, or model later.

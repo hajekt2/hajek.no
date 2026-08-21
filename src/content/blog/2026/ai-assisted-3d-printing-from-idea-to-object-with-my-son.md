@@ -52,25 +52,15 @@ It was not about making something impressive. It was about showing the whole cha
 
 **idea → AI-assisted design → parametric CAD → STEP/STL → slicer → printer → physical result**
 
-That loop is powerful.
-
 The repository is structured around source-first 3D printing. The Python CAD file is the canonical source. STEP is the editable CAD export. STL is the slicer input. The agent workflow is documented so the same pattern can be reused for other small household parts.
 
-This is where AI agents become interesting to me.
-
-Not as chatbots.
-
-Not as magic.
-
-Not as “generate me a random 3D mesh”.
-
-But as practical tools that help turn small everyday problems into something you can actually hold.
+I like AI agents most when they help turn a small everyday problem into something I can inspect, adjust, print, and hold.
 
 For functional 3D prints, I think this source-first approach matters. You want dimensions, clearances, tolerances, and editable code. A prompt-to-mesh result might look cool, but a parametric model is much easier to measure, regenerate, inspect, and improve after the first print does not fit perfectly.
 
 And for Tobias, the fun part was visible: an idea became code, code became a model, the model became a print, and the print became a thing on the desk.
 
-Honestly, that is a pretty cool thing to show your kid.
+Watching Tobias see an idea become code, a model, and finally a real object on the desk was the best part of the project.
 
 Repository and process notes:
 <https://github.com/hajekt2/3dprint>

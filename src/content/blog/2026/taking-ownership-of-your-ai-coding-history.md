@@ -10,58 +10,30 @@ tags:
   - developer-tools
   - data-ownership
   - privacy
-description: "AI coding assistant history is becoming valuable development memory. Developers should be able to export it, inspect it, archive it, and reuse it responsibly."
+description: "I added Windows support to a tool that exports local coding-agent history so developers can inspect, archive, sanitize, and reuse their own records."
 ---
 
 Over the last couple of years, AI coding assistants have become part of my daily development workflow.
 
-Tools like Cursor, Claude Code, Codex, Windsurf, Trae, Continue, Gemini CLI, and OpenCode are no longer just "chatbots next to the editor". They are becoming an active part of how software is designed, debugged, refactored, and documented.
+Tools such as Cursor, Claude Code, Codex, Gemini CLI, and OpenCode now participate in design, debugging, refactoring, tests, and documentation. Their local histories record prompts, answers, diffs, tool calls, failures, and the reasoning around a change.
 
-But there is one interesting problem:
+Most tools keep that record in their own storage format. Exporting it makes architectural decisions searchable, preserves project context, and gives developers data they can inspect or reuse without staying tied to one interface.
 
-Most of the useful interaction history stays locked inside each tool.
-
-Every prompt, every assistant answer, every code suggestion, every diff, every tool call, every debugging session — all of that becomes a detailed record of how you work with software. It is not just chat history. It is a development memory.
-
-That memory can be valuable for many reasons:
-
-- understanding how you actually use AI tools,
-- reviewing architectural and coding decisions,
-- building a personal knowledge base,
-- analyzing productivity patterns,
-- preserving important project context,
-- creating datasets for personal experiments,
-- potentially fine-tuning or evaluating future coding agents,
-- keeping control over data that you generated yourself.
-
-I recently found an interesting open-source project by irb0gie:
+I found an open-source project by irb0gie that exports this local history:
 
 [0xSero/ai-data-extraction](https://github.com/0xSero/ai-data-extraction)
 
-The project extracts local conversation and coding-agent data from several AI development tools, including Cursor, Claude Code, Codex, Windsurf, Trae, Continue, Gemini CLI, and OpenCode.
-
-It can extract things like:
-
-- user prompts,
-- assistant responses,
-- code context,
-- file paths and selected snippets,
-- suggested edits and diffs,
-- tool calls and execution results,
-- timestamps and metadata,
-- model and project information, where available.
-
-This is exactly the kind of tooling I think developers will need more of.
+The project extracts local conversation and coding-agent data from several development tools. Depending on the source, that can include prompts, responses, code context, file paths, diffs, tool results, timestamps, model information, and project metadata.
 
 If AI becomes part of the development process, then the history of that collaboration should not be invisible, inaccessible, or tied to one specific vendor. Developers should be able to export it, inspect it, archive it, and reuse it responsibly.
 
-The original project worked well for macOS and Linux-style environments, but I wanted it to work properly on Windows too. Many developers use these tools on Windows, and the relevant data is often stored in different places, such as `%APPDATA%` and `%LOCALAPPDATA%`.
+The original project worked on macOS and Linux-style environments. On Windows, the same tools store data in different locations, including `%APPDATA%` and `%LOCALAPPDATA%`.
 
 So I created a fork with Windows support:
 
 [hajekt2/ai-data-extraction](https://github.com/hajekt2/ai-data-extraction)
 
-The fork adds Windows-friendly extraction support, including a PowerShell script for running the full extraction flow.
+My fork adds Windows extraction paths and a PowerShell script that runs the full flow.
 
 There is also an important privacy warning here.
 
@@ -76,9 +48,7 @@ The extracted data may contain sensitive information:
 
 So this is not something you should blindly upload or commit anywhere. Treat the output as sensitive. Scan it for secrets, review it manually, and sanitize it before sharing.
 
-Still, I think this direction is important.
-
-As developers, we are producing more and more valuable context through our interactions with AI tools. That context should belong to us. We should be able to move it between tools, learn from it, and use it as part of our own long-term engineering memory.
+The output belongs in the same security category as source code and development logs. Once it is stored safely, developers can search old decisions, move history between tools, and retain the record when a coding assistant changes or disappears.
 
 Original project:
 [0xSero/ai-data-extraction](https://github.com/0xSero/ai-data-extraction)

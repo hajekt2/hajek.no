@@ -9,43 +9,27 @@ tags:
   - consulting
   - opentext-exstream
   - xper
-description: "Long-running CCM work is built on trust, domain knowledge, and the ability to keep critical document systems evolving over many years."
+description: "Long-running CCM work depends on accumulated knowledge of templates, integrations, business rules, production windows, and the cost of a wrong change."
 ---
 
-Good CCM projects are rarely short stories.
+The longer I work with a document platform, the less I see isolated templates.
 
-They are usually long relationships.
+I see the business rule that feeds a paragraph, the batch window that limits a deployment, the archive that expects a specific format, and the delivery system that treats one document type differently from another. I also see the odd exception that looks wrong until someone explains the incident that created it ten years ago.
 
-That is one of the things I have learned from working in this field. Document platforms sit close to the core of a business. They produce customer letters, policy documents, decisions, invoices, statements, notices, and communication that people actually depend on.
+That context changes how you make technical decisions.
 
-You do not replace that kind of system casually.
+Document platforms produce letters, policies, decisions, invoices, statements, and notices that people depend on. A change that looks local in a template may affect data mapping, language variants, print output, online generation, or an archive downstream.
 
-You evolve it.
+## Knowledge reduces risk
 
-You learn the templates, the integrations, the hidden business rules, the batch windows, the archive requirements, the delivery channels, the strange exceptions, and the historical reasons why something is done in a way that looks odd from the outside.
+Long-running CCM work builds a form of technical memory. You learn which integrations are fragile, which documents are business-critical, who owns the legal text, and what must happen when a batch fails halfway through.
 
-That knowledge compounds over time.
+This knowledge is difficult to reconstruct from code and configuration alone. Some of it lives in operational routines and in the reasons behind old decisions.
 
-A long-lived CCM relationship is not just about keeping the lights on. It is about becoming trusted enough to improve the system safely.
+Trust grows when a consultant can improve the system without treating every unusual detail as accidental complexity. That requires asking why a document exists, who depends on it, what happens when it is wrong, and which parts can safely be standardized.
 
-That matters in areas like OpenText Exstream, document accessibility, migration projects, and modernizing old communication flows. The technical work is important, but so is understanding the context around it.
+## Better tools should preserve the context
 
-Why does this letter exist?
+Experienced consultants still carry too much of this knowledge in their heads. AI and automation can help with template analysis, validation, accessibility checks, and migration work. They can also record evidence that would otherwise disappear after a project.
 
-Who depends on it?
-
-What happens if it is wrong?
-
-Which parts can be standardized, and which parts are tied to real business complexity?
-
-This is also why I am interested in building better tooling around CCM. Experienced consultants carry a lot of knowledge in their heads. AI and automation can help capture some of the repetitive work around analysis, validation, accessibility checks, and migration support.
-
-But the judgment still matters.
-
-The best tools should amplify domain expertise, not pretend it is unnecessary.
-
-For me, that is the lesson from long-running CCM work: trust is built by understanding both the system and the business consequences of changing it.
-
-The technology matters.
-
-The relationship matters too.
+The useful tools are the ones that make the existing knowledge easier to inspect and apply. The final decision still belongs to someone who understands the system and the business cost of changing it.

@@ -1,5 +1,5 @@
 ---
-title: "AI agents need queues, not infinite loops"
+title: "What a 14-hour Codex run taught me about task queues"
 author: "Tomas Hajek"
 pubDatetime: 2026-06-20T01:20:00+02:00
 featured: false
@@ -11,54 +11,28 @@ tags:
   - software-development
   - engineering
   - automation
-description: "After letting Codex run a goal for more than 14 hours, the lesson was not that agents should run forever. The useful pattern is a queue of scoped tasks, clear evidence, and human ownership at the right points."
+description: "A 14-hour Codex run showed why long agent tasks need a clear finish line, reviewable evidence, and a queue that can accept unfinished work."
 ---
 
-I recently let Codex run a goal for more than 14 hours.
+I recently let Codex work on one goal for more than 14 hours. It read files, made changes, got stuck, tried another approach, ran validation, summarized progress, and continued.
 
-That sounds more dramatic than it felt.
+The workflow held well enough to be useful, but not well enough to leave unattended. The run changed how I think about long agent tasks. The agent loop is a worker. A queue should control what it works on, what counts as complete, and where unfinished work goes next.
 
-It was not a single magical prompt where the machine disappeared into the cave and came back with a finished product. It was closer to watching a very persistent junior engineer work through a long task: reading files, making changes, getting stuck, trying again, validating, summarizing, and continuing.
+## A loop needs a queue
 
-The surprising part was not that it wrote code for a long time.
-
-The surprising part was that the workflow almost held.
-
-Not perfectly. Not autonomously enough that I would forget about it. But enough that it changed how I think about agentic software development.
-
-I do not think the future is one giant agent loop that runs forever.
-
-I think the future is queues.
-
-## The loop idea is useful, but incomplete
-
-There is a lot of discussion now about agent loops, Ralph loops, RALP-style loops, goal mode, autopilot mode, and long-running coding agents.
-
-The basic idea is simple: instead of prompting an AI once, you create a loop where the agent keeps working until a goal is complete. It plans, acts, checks, adjusts, and continues.
+Agent loops, Ralph loops, goal mode, autopilot mode, and other long-running patterns share the same basic idea. The agent plans, acts, checks, adjusts, and continues until a goal is complete.
 
 That is a real pattern. It works better than ordinary chat for many tasks because software work is naturally iterative. You try something, tests fail, you inspect the failure, you change direction, and you try again.
 
-That is already how good engineers work.
-
-But there is a trap in the way people talk about loops.
-
-A loop sounds like the unit of work is the agent itself: start the loop, keep it alive, let it run, hope it converges.
-
-That is not how real software teams work.
-
-Real software teams work from queues.
+The trap is treating the running agent as the unit of work. Starting a loop and waiting for it to converge gives the process weak boundaries.
 
 There is a queue of bugs, features, cleanup tasks, incidents, review comments, migration steps, test failures, security findings, documentation gaps, and product ideas. Humans pull items from the queue. CI systems pull items from the queue. Support teams add items to the queue. Product managers reorder the queue. Reviewers push items back into the queue when the evidence is not good enough.
 
-The queue is the system.
-
-The loop is only the worker.
+The queue records and orders the work. The loop handles one item.
 
 ## What the 14-hour run taught me
 
-A long Codex run is useful because it exposes the shape of the work.
-
-Short demos hide everything interesting. The agent edits a few files, the tests pass, everyone applauds. But long-running work reveals the real constraints:
+A long run exposes constraints that a short demo can hide:
 
 - the task definition must be precise,
 - the agent needs good instructions,
@@ -66,55 +40,25 @@ Short demos hide everything interesting. The agent edits a few files, the tests 
 - progress needs to be logged,
 - and the final result must be reviewable by a human.
 
-The important word there is reviewable.
-
 A 14-hour run can produce a lot of output. That is both the benefit and the danger. If the result is one huge pile of changes with no trail of reasoning, then the agent has not really delivered software. It has delivered a review problem.
-
-This connects directly to the review bottleneck.
 
 AI makes code generation cheaper. It does not automatically make understanding cheaper. In fact, if we are careless, it makes understanding more expensive because more code enters the system faster than humans can absorb it.
 
-So the goal cannot be: keep the loop running as long as possible.
+The useful outcome is one well-defined item moved through the queue with enough evidence for a human to accept, reject, or redirect it.
 
-The goal has to be: move one well-defined item through the queue with enough evidence that a human can safely accept, reject, or redirect it.
+## How an item moves through the queue
 
-## Queues are a better mental model
-
-A task gets picked from a queue.
-
-It may first go through exploration: is this bug real, where is the code, what is the likely fix, what risks exist?
-
-Then it may go back onto the queue as a better-scoped implementation task.
-
-Then an agent may implement it.
-
-Then CI validates it.
-
-Then another agent may review it.
-
-Then a human reviews the evidence.
-
-Then it either merges, gets rejected, or goes back into the queue with new information.
-
-That is much closer to how software delivery already works.
+A task may begin with exploration to confirm the bug, locate the code, estimate the risk, and define a likely fix. That investigation can produce a better-scoped implementation item. An agent implements it, CI checks it, another agent may review it, and a human decides whether the evidence supports a merge.
 
 The agent does not replace the process. It becomes another worker in the process.
 
-An infinite loop has weak boundaries. A queue item has strong boundaries.
-
-Strong boundaries are what make autonomy safe.
+A rejected or incomplete change returns to the queue with new information. The agent does not need to stay alive forever because the queue preserves the state of the work.
 
 ## Goal mode needs a definition of done
 
 Long-running goal mode is only useful when the goal is concrete.
 
-"Improve the app" is not a goal.
-
-"Fix all accessibility problems" is not a goal.
-
-"Make the codebase better" is not a goal.
-
-Those are wishes.
+"Improve the app," "fix all accessibility problems," and "make the codebase better" are wishes rather than executable goals.
 
 A useful goal looks more like this:
 
@@ -131,15 +75,11 @@ The longer the agent runs, the more important this becomes. A five-minute task c
 
 Without a definition of done, the agent will keep finding nearby work. Some of that work may be useful. Some may be noise. Some may be actively harmful because it expands scope and makes review harder.
 
-The agent needs a finish line.
-
-The system needs a way to push unfinished work back into the queue.
+The agent needs a finish line, and the system needs a way to return unfinished work to the queue.
 
 ## The queue also protects senior attention
 
-The scarce resource in AI-assisted development is not typing.
-
-It is senior attention.
+Senior attention is the scarce resource in AI-assisted development.
 
 If agents make it possible to produce five times more pull requests, but every pull request still requires the same senior engineer to reconstruct the design from scratch, then the team has not solved delivery. It has moved the bottleneck.
 
@@ -149,11 +89,9 @@ Not every queue item needs the same level of human attention. Some changes are l
 
 That classification should happen before and after agent work.
 
-Before: is this task safe to delegate?
+Before delegation, the team decides whether the task is safe for an agent. Afterward, the evidence determines how much human review it needs.
 
-After: did the agent produce enough evidence to trust the result?
-
-This is where I think agent workflows will mature. Not toward "merge everything the robot writes", but toward better routing:
+Agent workflows should mature through better routing:
 
 - small mechanical fixes go through automated gates,
 - medium changes get agent review plus human sampling,
@@ -161,26 +99,10 @@ This is where I think agent workflows will mature. Not toward "merge everything 
 - unclear tasks go to exploration before implementation,
 - risky tasks are split before any coding starts.
 
-That is queue management.
+This routing is ordinary queue management applied to software delivery.
 
-It is less glamorous than an autonomous loop. It is also much closer to production engineering.
+## The operating model
 
-## My current conclusion
+Long-running agents are useful workers inside an engineering system. The queue defines their tasks, automated checks provide evidence, and human judgment remains the ownership boundary.
 
-After watching long-running agents work, I am convinced they are useful.
-
-The better framing is more practical:
-
-Agents are workers.
-
-The queue is the workflow.
-
-The harness is the engineering system.
-
-Human judgment is still the ownership boundary.
-
-A 14-hour Codex run is impressive when it keeps moving. But the real question is not how long it ran. The real question is whether the result can be understood, verified, reviewed, and safely merged.
-
-That is the standard I care about.
-
-Not autonomous code generation for its own sake.
+The duration of the 14-hour run matters less than whether its result can be understood, verified, reviewed, and safely merged.

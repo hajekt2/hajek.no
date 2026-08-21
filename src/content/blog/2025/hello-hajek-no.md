@@ -9,12 +9,12 @@ tags:
   - ccm
   - ai
   - engineering
-description: "A short note on what this site is for: CCM, document systems, AI tools, and pragmatic engineering."
+description: "A short note on why I started writing about CCM, document systems, AI tools, and the engineering behind them."
 ---
 
 This site is my public notebook.
 
-I work mostly in customer communication management: document composition, transformation, delivery, accessibility, and the infrastructure around those systems. It is a surprisingly deep domain where details matter and where a lot of companies still live with painful, manual workflows.
+I work mostly in customer communication management: document composition, transformation, delivery, accessibility, and the infrastructure around those systems. A small template change can affect business rules, batch jobs, archives, delivery channels, and thousands of customer documents.
 
 I am especially interested in the intersection of CCM and AI:
 
