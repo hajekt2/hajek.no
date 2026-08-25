@@ -106,11 +106,11 @@
   "rewrites": [
     {
       "source": "/signal/array.js",
-      "destination": "https://eu.assets.posthog.com/array.js"
+      "destination": "https://eu-assets.i.posthog.com/array.js"
     },
     {
       "source": "/signal/static/:path*",
-      "destination": "https://eu.assets.posthog.com/static/:path*"
+      "destination": "https://eu-assets.i.posthog.com/static/:path*"
     },
     {
       "source": "/signal/:path*",
