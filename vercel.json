@@ -105,6 +105,18 @@
   ],
   "rewrites": [
     {
+      "source": "/signal/array.js",
+      "destination": "https://eu.assets.posthog.com/array.js"
+    },
+    {
+      "source": "/signal/static/:path*",
+      "destination": "https://eu.assets.posthog.com/static/:path*"
+    },
+    {
+      "source": "/signal/:path*",
+      "destination": "https://eu.i.posthog.com/:path*"
+    },
+    {
       "source": "/",
       "has": [
         {
