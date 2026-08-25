@@ -19,3 +19,38 @@
     });
   }
 </script>
+
+<!-- PostHog analytics + session replay, first-party via the /signal proxy in vercel.json -->
+<script>
+  if (typeof window !== 'undefined' && import.meta.env.PROD) {
+    import('posthog-js').then(({ default: posthog }) => {
+      posthog.init('phc_sDPUcangWuAfKKG56y5WX43AAwLJhp7xnGx4xCKj4xkT', {
+        api_host: 'https://hajek.no/signal',
+        ui_host: 'https://eu.posthog.com',
+        autocapture: true,
+        capture_pageview: false,
+        capture_pageleave: true,
+        session_recording: { enabled: true },
+      });
+
+      // The site uses Astro view transitions, so navigation is client-side page
+      // swaps. astro:page-load fires on initial load and after every swap; the
+      // fallback covers the case where it fired before posthog-js finished loading.
+      let capturedInitialPageview = false;
+      document.addEventListener('astro:page-load', () => {
+        capturedInitialPageview = true;
+        posthog.capture('$pageview');
+      });
+      setTimeout(() => {
+        if (!capturedInitialPageview) {
+          capturedInitialPageview = true;
+          posthog.capture('$pageview');
+        }
+      }, 0);
+
+      document.addEventListener('astro:before-swap', () => {
+        posthog.capture('$pageleave');
+      });
+    });
+  }
+</script>
