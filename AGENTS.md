@@ -3,8 +3,8 @@
 This file is the project's committed home for project-intrinsic agent knowledge: build, test, release, architecture, and sharp-edge notes that should travel with the code.
 
 - Application-owned Vercel infrastructure lives in `infra/`. Read
-  `infra/README.md` before changing hosting, domains, environment variable
-  names, or the encrypted remote state.
+  `infra/README.md` before changing hosting, domains, or the encrypted remote
+  state.
 
 ## Maintaining this file
 
