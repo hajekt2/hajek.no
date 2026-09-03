@@ -48,8 +48,3 @@ variable "project_domains" {
   description = "Domains attached to the Vercel project."
   type        = set(string)
 }
-
-variable "environment_variable_names" {
-  description = "Names of project environment variables observed in Vercel. Values are never stored here."
-  type        = set(string)
-}

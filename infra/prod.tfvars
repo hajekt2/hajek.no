@@ -12,7 +12,3 @@ project_domains = [
   "hajek.no",
   "www.hajek.no",
 ]
-
-# No project environment variables are currently configured in Vercel.
-# Record names here if that changes. Values must never be committed.
-environment_variable_names = []

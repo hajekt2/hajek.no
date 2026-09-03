@@ -5,11 +5,10 @@ the `hajekt2/hajek.no` site:
 
 - the existing `hajek-no` Vercel project
 - `hajek.no`, `www.hajek.no`, and `hajek-no.vercel.app`
-- the names of project environment variables, currently none
 
-Environment variable values are deliberately never stored in this repository.
-The Vercel API currently reports no project environment variables, so there are
-no environment-variable resources to import.
+The project currently has no environment variables configured. This root
+deliberately does not manage environment variable values because they are
+secrets held in the vault and must never be committed to this repository.
 
 ## Ownership boundary
 
