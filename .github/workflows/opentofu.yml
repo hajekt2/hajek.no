@@ -1,0 +1,39 @@
+name: OpenTofu
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "infra/**"
+      - ".github/workflows/opentofu.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "infra/**"
+      - ".github/workflows/opentofu.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: opentofu/setup-opentofu@v2.0.2
+        with:
+          tofu_version: 1.12.6
+          tofu_wrapper: false
+
+      - name: Check formatting
+        run: tofu fmt -check -recursive infra
+
+      - name: Initialize without production state
+        env:
+          TF_VAR_state_encryption_passphrase: test-only-passphrase-with-32-characters
+        run: tofu -chdir=infra init -backend=false
+
+      - name: Validate configuration
+        env:
+          TF_VAR_state_encryption_passphrase: test-only-passphrase-with-32-characters
+        run: tofu -chdir=infra validate
