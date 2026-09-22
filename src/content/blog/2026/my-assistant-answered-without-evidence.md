@@ -1,7 +1,7 @@
 ---
 title: "My assistant answered a question without supporting evidence"
 author: "Tomas Hajek"
-pubDatetime: 2026-09-22T09:00:00+02:00
+pubDatetime: 2026-09-22T07:53:32+02:00
 featured: false
 draft: false
 tags:
