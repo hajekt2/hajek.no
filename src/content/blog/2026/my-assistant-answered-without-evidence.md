@@ -14,6 +14,8 @@ description: "Three models found the expected documents. Unsupported questions e
 
 I asked my Exstream assistant which Quadient setting controlled PDF/A-3 attachments. There was no supporting document in its knowledge base. It named a setting anyway.
 
+For the test setup, checker code and a proposed review procedure, read [the technical companion](https://hajek.no/posts/2026/rag-retrieval-and-refusal-evaluation).
+
 This was one of the questions I used to compare three models in August. I wanted the assistant to answer from the documents I had given it, and stop when those documents could not support an answer.
 
 The first test asked the same 12 Exstream support questions in both English and Norwegian. All three models found the expected documents. Finding them did not establish that every sentence in the resulting answers was correct, but it was a useful check of retrieval across languages.
