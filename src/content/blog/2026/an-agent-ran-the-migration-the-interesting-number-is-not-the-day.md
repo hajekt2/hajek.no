@@ -1,7 +1,7 @@
 ---
 title: "An agent ran the migration. The interesting number is not the day."
 author: "Tomas Hajek"
-pubDatetime: 2026-11-18T10:00:00+01:00
+pubDatetime: 2026-11-18T02:20:00+01:00
 featured: false
 draft: false
 tags:
